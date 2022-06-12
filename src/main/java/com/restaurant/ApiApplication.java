@@ -1,7 +1,8 @@
 package com.restaurant;
 
-import com.restaurant.model.User;
-import com.restaurant.repository.UserRepository;
+website_login_personnel
+import com.restaurant.model.Personnel;
+import com.restaurant.repository.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApiApplication implements CommandLineRunner {
     @Autowired
-    UserRepository userRepository;
+
+    PersonnelRepository personnelRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
@@ -19,13 +22,14 @@ public class ApiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user = new User(null, "John", "de Witt", "witt", "***", "Admin");
-        User user2 = userRepository.save(user);
-        user = new User(null, "Ozlem", "Dobur", "odobur", "***", "Admin");
-        user2 = userRepository.save(user);
-        user = new User(null, "Ahmet", "Karabas", "akarabas", "***", "Admin");
-        user2 = userRepository.save(user);
-        user = new User(null, "Nurullah", "Bayram", "nbayram", "***", "Admin");
-        user2 = userRepository.save(user);
+        Personnel user = new Personnel(null, "John", "de Witt", "witt", "***", "Admin");
+        Personnel user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "***", "Admin");
+        user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "***", "Admin");
+        user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "***", "Admin");
+        user2 = personnelRepository.save(user);
+
     }
 }
