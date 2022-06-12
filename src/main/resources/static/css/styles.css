@@ -582,8 +582,6 @@ body {
 a#login-button.button.logout.login.w-button {
   width:100px;
   height:40px;
-
-a#login-button.button.logout.login.w-button {
   background-color: #005693;
   background-image: none;
   border-radius: 25px;
@@ -596,6 +594,7 @@ a#login-button.button.logout.login.w-button {
   flex: 1;
   float: right;
   font-family: Poppins, sans-serif;
+
   font-size: 14px;
   left: auto;
   letter-spacing: 1px;
@@ -611,8 +610,6 @@ a#login-button.button.logout.login.w-button {
   top: 11px;
   transition: background-color 150ms;
   z-index: 30;
-   /*display: inline-flex; keep the inline nature of buttons */
-  /* //align-items: flex-start; this is default */
 }
 
 a#login-button.button.logout.login.w-button:active {

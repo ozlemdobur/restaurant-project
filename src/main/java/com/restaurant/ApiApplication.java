@@ -1,5 +1,6 @@
 package com.restaurant;
 
+website_login_personnel
 import com.restaurant.model.Personnel;
 import com.restaurant.repository.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApiApplication implements CommandLineRunner {
     @Autowired
+
     PersonnelRepository personnelRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
@@ -27,5 +30,6 @@ public class ApiApplication implements CommandLineRunner {
         user2 = personnelRepository.save(user);
         user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "***", "Admin");
         user2 = personnelRepository.save(user);
+
     }
 }
