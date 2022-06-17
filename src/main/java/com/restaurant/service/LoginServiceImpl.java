@@ -1,6 +1,6 @@
 package com.restaurant.service;
 
-import com.restaurant.model.User;
+import com.restaurant.model.Personnel;
 import com.restaurant.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ public class LoginServiceImpl implements LoginService{
     }
 
     @Override
-    public User login(String username, String password) {
-        User user = loginRepository.findByUsernameAndPassword(username, password);
-        return user;
+    public Personnel login(String username, String password) {
+        Personnel personnel = loginRepository.findByUsernameAndPassword(username, password);
+        return personnel;
     }
 }
