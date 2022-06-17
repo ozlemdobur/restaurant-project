@@ -17,50 +17,73 @@
             init();
         });
 
+
     </script>
 
 </head>
 <body>
-    <p/>
-    <div class="container">
-        <!--  A reference to an empty table -->
-        <table id="userTable" class="display mx-auto">
-        </table>
+<p/>
+<div class="container">
+    <!--  A reference to an empty table -->
+    <table id="userTable" bgcolor="00BFFF" class="display mx-auto">
+    </table>
+</div>
+<p/>
+<div class="container" id="users"></div>
+<div class="container">
+    <div id="userModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">New User</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="userForm">
+                        <div class="form-group">
+                            <label for="id">User Id:</label>
+                            <input type="text" class="form-control" id="id">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="text" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role:</label>
+                            <input type="text" class="form-control" id="role">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <p/>
-    <div class="container" id="users"></div>
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label for="id">User Id:</label>
-                <input type="text" class="form-control" id="id">
-            </div>
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName">
-            </div>
-            <div class="form-group">
-                <label for="userName">Username:</label>
-                <input type="text" class="form-control" id="userName">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="text" class="form-control" id="password">
-            </div>
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <input type="text" class="form-control" id="role">
-            </div>
-            <hr class="my-4">
-            <button class="btn btn-primary" id="create-user" type="submit">Add</button>
-            <button class="btn btn-primary" id="edit-user" type="submit">Edit</button>
-            <button class="btn btn-primary" id="delete-user" type="submit">Delete</button>
-            <button class="btn btn-primary" id="exit" type="submit">Exit</button>
-        </form>
+</div>
+<div class=“row”>
+    <div class=“col-md-12”>
+        <button type="button" id="create-user" class="btn btn-primary" data-toggle="modal" data-target="#userModal">New User
+        </button>
+        <button class="btn btn-primary" id="edit-user" type="submit">Edit</button>
+        <button class="btn btn-primary" id="delete-user" type="submit">Delete</button>
+        <button class="btn btn-primary" id="exit" type="submit">Exit</button>
     </div>
+</div>
 </body>
 </html>

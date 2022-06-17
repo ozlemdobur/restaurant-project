@@ -1,10 +1,11 @@
 var api = "http://localhost:9090/api/user" ;
-
+var userTable;
 function init(){
 
     console.log('inside init' );
     initUserTable();
     // Add click event to button
+/*
     $("#create-user").click(function (){
         createUser();
     });
@@ -14,8 +15,32 @@ function init(){
     $("#update-user").click(function (){
         deleteUser();
     });
+*/
     // Get customers from backend and update DOM
-    getUsers();
+   $("#newUserButton").click( function () {
+               console.log("Inside click of newUserButton");
+               $('#userModal').modal('show');
+           });
+           $("#editUserButton").click( function () {
+               console.log("Inside click of editUserButton");
+               // Get the data from selected row and fill fields in modal
+                $("#firstName").val('test'),
+                $("#lastName").val('test'),
+                $("#username").val('test'),
+                $("#password").val('test'),
+                $("#role").val('test')
+               // if (customerTable.row($('.selected')).data() != undefined) {
+
+
+               $('#userModal').modal('show');
+           });
+           // Add submit event to form
+           $("#userForm").on('submit', function() {
+               createUser();
+               $('#userModal').modal('hide');
+           });
+           initUserTable();
+       getUsers();
 
 }
 
@@ -46,25 +71,6 @@ function initUserTable() {
         "order": [[ 0, "asc" ]],
         "columns": columns
     });
-
-
-    var table = $('#userTable').DataTable();
-
-    $('#userTable tbody').on( 'click', 'tr', function () {
-          var user = $("#firstName").val(table.row(this).data());
-          $("#firstName").val(user.firstName);
-
-          $("#lastName").val('');
-          $("#username").val('');
-          $("#password").val('');
-          $("#role").val('');
-
-
-        console.log( table.row( this ).data() );
-    } );
-
-
-
 }
 function getUsers(){
 

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+<!--    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <!--========== BOX ICONS ==========-->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
@@ -10,6 +16,9 @@
     <link rel="stylesheet" href="/css/styles.css">
 
     <title>Responsive website food</title>
+    <script type="text/javascript">
+        init();
+    </script>
 </head>
 <body>
 
@@ -38,6 +47,7 @@
                 <li class="nav__item"><a href="#contact" class="nav__link" style="text-align:center;"><h2 class="home__mainmenutitle">Contact</h2></a>
                 </li></td></tr></table>
                 <a id="login-button" ms-hide-element="true" class="button logout login w-button" href="/login" onclick=";window.location.href=this.getAttribute('href');return false;">Login</a>
+<!--                //<button class="button" href="/login" onclick=";window.location.href=this.getAttribute('href');return false;">Sign In</button>-->
 
             </ul>
         </div>
@@ -55,7 +65,8 @@
             <div class="home__data">
                 <h1 class="home__title">Tasty food</h1>
                 <h2 class="home__subtitle">Once you try it,<br> you will love it</h2>
-                <a href="#" class="button">Reservation</a>
+                <a id="reservation-button" ms-hide-element="true" class="button logout login w-button" href="/reservation" onclick=";window.location.href=this.getAttribute('href');return false;">Reservation</a>
+              <!--  <a href="#" class="button">Reservation</a>-->
             </div>
 
             <img src="/img/home.png" alt="" class="home__img">
@@ -144,6 +155,11 @@
     <p class="footer__copy">&#169; 2022 Capgemini Netherlands. All right reserved</p>
 </footer>
 
+<script type="text/javascript">
+        function disableBack() { window.history.forward(); }
+        setTimeout("disableBack()", 0);
+        window.onunload = function () { null };
+</script>
 <!--========== SCROLL REVEAL ==========-->
 <script src="https://unpkg.com/scrollreveal"></script>
 

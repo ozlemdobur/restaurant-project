@@ -1,11 +1,11 @@
 package com.restaurant.repository;
 
-import com.restaurant.model.User;
+import com.restaurant.model.Personnel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LoginRepository extends CrudRepository<User, Long> {
+public interface LoginRepository extends CrudRepository<Personnel, Long> {
 
-    User findByUsernameAndPassword(String username, String password);
+    Personnel findByUsernameAndPassword(String username, String password);
 }

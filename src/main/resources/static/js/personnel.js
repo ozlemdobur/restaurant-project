@@ -65,6 +65,7 @@ function initPersonnelTable() {
         { "title": "Role",
             "data": "role"},
     ];
+
     // Define new table with above columns
     personnelTable = $("#personnelTable").DataTable( {
         "order": [[ 0, "asc" ]],

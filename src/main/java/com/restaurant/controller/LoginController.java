@@ -1,8 +1,7 @@
 package com.restaurant.controller;
 
-import com.restaurant.model.User;
+import com.restaurant.model.Personnel;
 import com.restaurant.service.LoginService;
-import com.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +25,11 @@ public class LoginController {
     }
 
     @GetMapping(value = "/login/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> login(@PathVariable String username,@PathVariable String password){
+    public ResponseEntity<Personnel> login(@PathVariable String username,@PathVariable String password){
         System.out.println(username);
         System.out.println(password);
-        User user = loginService.login(username, password);
-        return ResponseEntity.ok(user);
+        Personnel personnel = loginService.login(username, password);
+        return ResponseEntity.ok(personnel);
     }
 
 }

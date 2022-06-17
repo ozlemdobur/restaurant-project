@@ -1,7 +1,8 @@
 package com.restaurant.service;
 
-import com.restaurant.model.User;
+import com.restaurant.model.Personnel;
+
 
 public interface LoginService {
-    User login(String username,String password);
+    Personnel login(String username, String password);
 }

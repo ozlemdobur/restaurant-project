@@ -1,6 +1,5 @@
 package com.restaurant;
 
-website_login_personnel
 import com.restaurant.model.Personnel;
 import com.restaurant.repository.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
