@@ -1,6 +1,5 @@
 package com.restaurant.repository;
 
-
 import com.restaurant.model.Reservation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

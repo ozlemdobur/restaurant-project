@@ -76,6 +76,7 @@ public class Reservation {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPhone() {
         return phone;
     }
@@ -105,5 +106,6 @@ public class Reservation {
     }
     public void setBabyChair(boolean babyChair) {
         this.isBabyChair = babyChair;
+
     }
 }
