@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity()
@@ -13,52 +12,51 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long reservationId;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
-    private String phoneNumber;
-    private LocalDate reservationDate;
-    private LocalTime reservationTime;
-
-    private int amountPerson;
-    private boolean babyChair;
+    private String phone;
+    private LocalDate date;
+    private LocalTime time;
+    private int howManyPeople;
+    private boolean isBabyChair;
 
     public Reservation() {
     }
 
-    public Reservation(long reservationId, String firstName, String lastName, String email, String phoneNumber, LocalDate reservationDate,LocalTime reservationTime, int amountPerson, boolean babyChair) {
-        this.reservationId = reservationId;
+    public Reservation(long id, String firstName, String lastName, String email, String phone, LocalDate date,LocalTime time, int howManyPeople, boolean isBabyChair) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.reservationDate = reservationDate;
-        this.reservationTime = reservationTime;
-        this.amountPerson = amountPerson;
-        this.babyChair = babyChair;
+        this.phone = phone;
+        this.date = date;
+        this.time = time;
+        this.howManyPeople = howManyPeople;
+        this.isBabyChair = isBabyChair;
     }
 
     @Override
     public String toString() {
         return "Reservation{" +
-                "reservationId=" + reservationId +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", reservationDate=" + reservationDate +
-                ", reservationTime=" + reservationTime +
-                ", amountPerson=" + amountPerson +
-                ", babyChair=" + babyChair +
+                ", phone='" + phone + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                ", howManyPeople=" + howManyPeople +
+                ", isBabyChair=" + isBabyChair +
                 '}';
     }
 
-    public long getReservationId() {
-        return reservationId;
+    public long getId() {
+        return id;
     }
-    public void setReservationId(long reservationId) {
-        this.reservationId = reservationId;
+    public void setId(long id) {
+        this.id = id;
     }
     public String getFirstName() {
         return firstName;
@@ -78,34 +76,36 @@ public class Reservation {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPhoneNumber() {
-        return phoneNumber;
+
+    public String getPhone() {
+        return phone;
     }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-    public LocalDate getReservationDate() {
-        return reservationDate;
+    public LocalDate getDate() {
+        return date;
     }
-    public void setReservationDate(LocalDate reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
-    public LocalTime getReservationTime() {
-        return reservationTime;
+    public LocalTime getTime() {
+        return time;
     }
-    public void setReservationTime(LocalTime reservationTime) {
-        this.reservationTime = reservationTime;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
-    public int getAmountPerson() {
-        return amountPerson;
+    public int getHowManyPeople() {
+        return howManyPeople;
     }
-    public void setAmountPerson(int amountPerson) {
-        this.amountPerson = amountPerson;
+    public void setHowManyPeople(int howManyPeople) {
+        this.howManyPeople = howManyPeople;
     }
     public boolean isBabyChair() {
-        return babyChair;
+        return isBabyChair;
     }
     public void setBabyChair(boolean babyChair) {
-        this.babyChair = babyChair;
+        this.isBabyChair = babyChair;
+
     }
 }
