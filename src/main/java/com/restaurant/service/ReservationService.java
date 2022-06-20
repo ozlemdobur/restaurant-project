@@ -1,8 +1,6 @@
 package com.restaurant.service;
 
-
 import com.restaurant.model.Reservation;
-
 import java.util.Optional;
 
 public interface ReservationService {
