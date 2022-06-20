@@ -21,13 +21,13 @@ public class ApiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Personnel user = new Personnel(null, "John", "de Witt", "witt", "***", "Admin");
+        Personnel user = new Personnel(null, "John", "de Witt", "witt", "AAaa11..", "Admin");
         Personnel user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "***", "Admin");
+        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "AAaa11..", "Admin");
         user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "***", "Admin");
+        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "AAaa11..", "Admin");
         user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "***", "Admin");
+        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", "Admin");
         user2 = personnelRepository.save(user);
 
     }
