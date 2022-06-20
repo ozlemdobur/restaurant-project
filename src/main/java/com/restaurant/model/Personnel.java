@@ -1,9 +1,15 @@
 package com.restaurant.model;
 
+import com.restaurant.service.PasswordConstraint;
+import com.restaurant.service.ValidPassword;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import java.util.Iterator;
+
 
 @Entity
 public class Personnel {
@@ -13,6 +19,7 @@ public class Personnel {
     private String firstName;
     private String lastName;
     private String username;
+    @ValidPassword
     private String password;
     private String role;
 

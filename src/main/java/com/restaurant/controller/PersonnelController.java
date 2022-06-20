@@ -22,27 +22,24 @@ public class PersonnelController {
     }
 
     @GetMapping(value = "/personnel", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Iterable<Personnel>> getAllPersonnels(){
+    public ResponseEntity<Iterable<Personnel>> getAllPersonnels() {
         Iterable<Personnel> personnels = personnelService.findAll();
         return ResponseEntity.ok(personnels);
     }
 
-    @PutMapping(value="/personnel{}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Personnel> updatePersonnel(@RequestBody Personnel personnel ){
-        Personnel updatedPersonnel = personnelService.updatePersonnel(personnel);
-        return ResponseEntity.ok(updatedPersonnel);
-    }
-
-    @DeleteMapping(value="/personnel")
-    public void deletePersonnel(@RequestBody Long Id){
-        personnelService.deletePersonnel(Id);
-    }
-
     @PostMapping(value = "/personnel", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Personnel> createPersonnel(@RequestBody Personnel personnel){
-
+    public ResponseEntity<Personnel> createPersonnel(@RequestBody Personnel personnel) throws Exception {
         Personnel personnelCreated = personnelService.createPersonnel(personnel);
-        return ResponseEntity.ok(personnelCreated);
+        if (personnelCreated == null) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(personnelCreated);
+        }
     }
 
+    // http://9090/api/customer/3
+    @DeleteMapping(value = "/personnel/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public void deletePersonnelById(@PathVariable Long id) {
+        personnelService.deletePersonnel(id);
+    }
 }
