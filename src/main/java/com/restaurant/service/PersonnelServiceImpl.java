@@ -25,20 +25,12 @@ public class PersonnelServiceImpl implements PersonnelService {
     }
 
     @Override
-    public Personnel createPersonnel(Personnel personnel) {
-        Personnel personnelCreated = personnelRepository.save(personnel);
-        return personnelCreated;
-    }
-
-    @Override
-    public Personnel updatePersonnel(Personnel personnel) {
-        Personnel personnelUpdated = findById(personnel.getId());
-        personnelUpdated.setFirstName(personnel.getFirstName());
-        personnelUpdated.setLastName(personnel.getLastName());
-        personnelUpdated.setUsername(personnel.getUsername());
-        personnelUpdated.setPassword(personnel.getPassword());
-        personnelUpdated.setRole(personnel.getRole());
-        return personnelRepository.save(personnelUpdated);
+    public Personnel createPersonnel(Personnel personnel) throws Exception{
+        if(isPasswordStrong(personnel)){
+            Personnel personnelCreated = personnelRepository.save(personnel);
+            return personnelCreated;
+        }
+        throw new Exception("Password is weak!");
     }
 
     @Override
@@ -51,5 +43,11 @@ public class PersonnelServiceImpl implements PersonnelService {
         return null;
     }
 
+    public boolean isPasswordStrong(Personnel personnel){
+                //String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$";
+                String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).{8,}$";
+                return (personnel.getPassword().matches(pattern));
+
+    }
 
 }
