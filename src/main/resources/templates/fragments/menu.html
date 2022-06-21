@@ -1,42 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Admin Menu</title>
-</head>
 <body>
-
 <nav th:fragment="menu">
-    <header id="header">
-        <table style="width: 100%; top:15px;">
-            <tr>
-                <td style="width:300px;">
-                    <a href="#home"><img height="50" src="/img/logo_with_name.png" width="300">
-                    </a>
-                </td>
-                <td>
-                    <a href="/reservationAdministration" style="text-align:center;color: #141459;"><h4><b>Reservation</b></h4></a>
-                </td>
-                <td>
-                    <a href="/menu" style="text-align:center;color: #141459;"><h4><b>Menu</b></h4></a>
-                </td>
-                <td>
-                    <a href="/product" style="text-align:center;color: #141459;"><h4><b>Product</b></h4></a>
-                </td>
-                <td>
-                    <a href="/personnel" style="text-align:center;color: #141459;"><h4><b>Personnel</b></h4></a>
-                </td>
-                <td style="align =right;right:0px;">
-                    <p></p><button class="btn btn-primary" type="button" href="/index"
-                            onclick=";window.location.href=this.getAttribute('href');return false;">Logout</button>
-                </td>
-            </tr>
-        </table>
-    </header>
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <a th:href="@{/user}">Homepage</a>
+            <a th:href="@{/about}">About Me</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/contact}">Contact</a>
+        </div>
+    </div>
 </nav>
 </body>
 </html>
-
-
