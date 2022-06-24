@@ -1,13 +1,23 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product</title>
+    <meta charset="UTF-8">
+    <title>User page</title>
+<!--    <link href="/css/main.css" rel="stylesheet"/>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/js/product.js"></script>
+    <script>
+        $( document ).ready(function() {
+            console.log( "initializing" );
+            init();
+        });
+    </script>
 
     <style>
       .bd-placeholder-img {
@@ -61,145 +71,104 @@
         -webkit-overflow-scrolling: touch;
       }
 
-
-
-
-
-
-
-
-
-
     </style>
 
-
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
+<div th:insert="/fragments/header :: header"></div>
+<div th:insert="/fragments/menu :: menu"></div>
+</p>
 <div class="container">
-    <main>
-        <!--        <div class="py-5 text-center">
-                    <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-                    <h2>Checkout form</h2>
-                    <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-                </div>-->
-
-        <!--<div class="row g-5">
-            <div class="col-md-5 col-lg-4 order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Promo code</h6>
-                            <small>EXAMPLECODE</small>
-                        </div>
-                        <span class="text-success">−$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
--->
-        <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">Production</h4>
-            <form class="needs-validation" novalidate>
-                <div class="row g-3">
-                    <div class="col-sm-12">
-                        <label for="id" class="form-label">Product Id</label>
-                        <input type="text" class="form-control" id="id" placeholder="" value="" required>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" placeholder="" value="" required>
-                    </div>
-
-
-                    <div class="col-sm-12" role="group" aria-label="Measurement Unit">
-                        <div class="col-sm-12"><label for="pieces" class="form-label">Measurement Unit</label>
-                            <input type="radio" class="btn-check" name="measurementUnit" id="pieces" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="pieces">pieces</label>
-
-                            <input type="radio" class="btn-check" name="measurementUnit" id="gram" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="gram">gram</label>
-
-                            <input type="radio" class="btn-check" name="measurementUnit" id="litre" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="litre">litre</label>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <label for="newAmount" class="form-label">New Amount</label>
-                            <input type="text" class="form-control" id="newAmount" placeholder="" value="" required>
-                        </div>
-                        <div class="col-sm-12">
-                            <label for="stockAmount" class="form-label">Stock Amount</label>
-                            <input type="text" class="form-control" id="stockAmount" placeholder="" value=""
-                                   required>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <label for="supplierEmail" class="form-label">Supplier <span
-                                    class="text-muted">(Optional)</span></label>
-                            <input type="supplierEmail" class="form-control" id="supplierEmail"
-                                   placeholder="bol@example.com">
-                            <div class="invalid-feedback">
-                                Please enter a valid email address of the supplier for new products.
-                            </div>
-                        </div>
-
-                        <hr class="my-4">
-                        <button class="btn btn-primary" id="add-product" type="submit">Add</button>
-                        <button class="btn btn-primary" id="edit-product" type="submit">Edit</button>
-                        <button class="btn btn-primary" id="delete-product" type="submit">Delete</button>
-                        <button class="btn btn-primary" id="list-product" type="button">List</button>
-                        <button class="btn btn-primary" id="exit" type="submit">Exit</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </main>
-
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2022- Molveno Lale Resort Resturant</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
+    <table id="productTable" bgcolor="#F0F8FF" class="table table-striped" style="width:100%">
+    </table>
 </div>
+</p>
+<div id="productModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Production Menu</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <div hidden>
+                        <label for="id">Product Id:</label>
+                        <input type="text" class="form-control" id="id">
+                    </div>
 
-<!--
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="form-validation.js"></script>-->
-<script type="text/javascript" src="js/product.js"></script>
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" class="form-control" id="productName">
+                    </div>
 
+                    <div class="form-group">
+                        <label for="stockAmount" class="form-label">Stock Amount</label>
+                        <input type="number" class="form-control" id="stockAmount" placeholder="" value=""
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minumumLimit" class="form-label">Minumum Limit</label>
+                        <input type="number" class="form-control" id="minumumLimit" placeholder="" value="" required>
+                    </div>
+
+                    <div class="form-group" role="group" id="measurementUnit">
+                        <label for="measurementUnit" >Measurement Unit</label>
+                        <input type="radio" class="btn-check" id="piece" name="unit" value="piece">
+                        <label class="btn btn-outline-primary">piece</label>
+                        <input type="radio" class="btn-check" id="gram" name="unit" value="gram">
+                        <label class="btn btn-outline-primary">gram</label>
+                        <input type="radio" class="btn-check" id="litre" name="unit" value="litre">
+                        <label class="btn btn-outline-primary">litre</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplier" class="form-label">Supplier<span
+                                class="text-muted">(Optional)</span></label>
+                        <input type="supplier" class="form-control" id="supplier"
+                               placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
+                        <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
+                        <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=“row”>
+    <div class="modal-footer justify-content-center">
+        <button type="submit" id="create-product" class="btn btn-primary" data-dismiss="modal">New Product
+        </button>
+        <button class="btn btn-primary" id="edit-product" type="submit">Edit Product</button>
+        <button class="btn btn-primary" id="delete-product" type="submit">Delete Product</button>
+    </div>
+</div>
+<div id="productDeleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Product</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                This record will delete.Are you sure?
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" id="deleteProductConfirmButton" class="btn btn-danger" data-dismiss="modal">
+                    Delete
+                </button>
+                <button type="button" class="btn btn-secondary room-close-button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="/fragments/footer :: footer"></div>
 </body>
 </html>

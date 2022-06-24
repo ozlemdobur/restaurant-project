@@ -8,24 +8,24 @@ import javax.persistence.Id;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String productName;
     private String measurementUnit;
-    private Long newAmount;
-    private long stockAmount;
-    private String supplierEmail;
+    private Double stockAmount;
+        private Double minumumLimit;
+    private String supplier;
 
     public Product() {
     }
 
-    public Product(Long id, String productName, String measurementUnit, Long newAmount, long stockAmount, String supplierEmail) {
+    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplierEmail) {
         this.id = id;
         this.productName = productName;
         this.measurementUnit = measurementUnit;
-        this.newAmount = newAmount;
         this.stockAmount = stockAmount;
-        this.supplierEmail = supplierEmail;
+        this.minumumLimit = minumumLimit;
+        this.supplier = supplierEmail;
     }
 
     public Long getId() {
@@ -52,27 +52,39 @@ public class Product {
         this.measurementUnit = measurementUnit;
     }
 
-    public Long getNewAmount() {
-        return newAmount;
-    }
-
-    public void setNewAmount(Long newAmount) {
-        this.newAmount = newAmount;
-    }
-
-    public long getStockAmount() {
+    public Double getStockAmount() {
         return stockAmount;
     }
 
-    public void setStockAmount(long stockAmount) {
+    public void setStockAmount(Double stockAmount) {
         this.stockAmount = stockAmount;
     }
 
-    public String getSupplierEmail() {
-        return supplierEmail;
+    public Double getMinumumLimit() {
+        return minumumLimit;
     }
 
-    public void setSupplierEmail(String supplierEmail) {
-        this.supplierEmail = supplierEmail;
+    public void setMinumumLimit(Double minumumLimit) {
+        this.minumumLimit = minumumLimit;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", measurementUnit='" + measurementUnit + '\'' +
+                ", stockAmount=" + stockAmount +
+                ", minumumLimit=" + minumumLimit +
+                ", supplier='" + supplier + '\'' +
+                '}';
     }
 }

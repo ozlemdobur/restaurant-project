@@ -1,7 +1,9 @@
 package com.restaurant;
 
 import com.restaurant.model.Personnel;
+import com.restaurant.model.Product;
 import com.restaurant.repository.PersonnelRepository;
+import com.restaurant.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +14,8 @@ public class ApiApplication implements CommandLineRunner {
 
     @Autowired
     PersonnelRepository personnelRepository;
+    @Autowired
+    ProductRepository productRepository;
 
 
     public static void main(String[] args) {
@@ -30,5 +34,15 @@ public class ApiApplication implements CommandLineRunner {
         user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", "Admin");
         user2 = personnelRepository.save(user);
 
+       Product product = new Product(null, "Meat", "gram", 1000.0,20000.0,"https://www.bol.com/nl/nl/");
+        Product product1 = productRepository.save(product);
+        product = new Product(null, "Tomato", "gram", 10000.0, 120.0,"https://www.bol.com/nl/nl/");
+        product1 = productRepository.save(product);
+        product = new Product(null, "Potato", "gram", 15000.0, 120000.0,"https://www.bol.com/nl/nl/");
+        product1 = productRepository.save(product);
+        product = new Product(null, "Milk", "litre", 2000.0, 120.0,"https://www.bol.com/nl/nl/");
+        product1 = productRepository.save(product);
+        product = new Product(null, "lettuce", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/");
+        product1 = productRepository.save(product);
     }
 }
