@@ -20,15 +20,14 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-
     // http://localhost:9090/api/reservation
     @GetMapping(value = "/reservation", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Iterable<Reservation>> getAllReservations() {
         System.out.println("Inside getAllReservations");
         Iterable<Reservation> reservations = reservationService.findAll();
+//        System.out.println(reservations.toString());
         return ResponseEntity.ok(reservations);
     }
-
 
     // http://localhost:9090/api/reservation
     @GetMapping(value = "/reservation/{firstName}", produces= MediaType.APPLICATION_JSON_VALUE)

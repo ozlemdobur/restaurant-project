@@ -2,12 +2,17 @@ package com.restaurant;
 
 import com.restaurant.model.Personnel;
 import com.restaurant.model.Product;
+import com.restaurant.model.Reservation;
 import com.restaurant.repository.PersonnelRepository;
 import com.restaurant.repository.ProductRepository;
+import com.restaurant.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @SpringBootApplication
 public class ApiApplication implements CommandLineRunner {
@@ -16,6 +21,8 @@ public class ApiApplication implements CommandLineRunner {
     PersonnelRepository personnelRepository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ReservationRepository reservationRepository;
 
 
     public static void main(String[] args) {
@@ -44,5 +51,10 @@ public class ApiApplication implements CommandLineRunner {
         product1 = productRepository.save(product);
         product = new Product(null, "lettuce", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/");
         product1 = productRepository.save(product);
+
+        Reservation reservation1 = new Reservation(0, "Nuri", "Bayram", "nbayram4@gmail.com", "06-84613844", LocalDate.now(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()), 2, true);
+        Reservation reservation2 = new Reservation(0, "Halid", "Enes", "henes@gmail.com", "06-12345678", LocalDate.parse("2022-08-04"), LocalTime.parse("11:30"), 3, false);
+        reservationRepository.save(reservation1);
+        reservationRepository.save(reservation2);
     }
 }
