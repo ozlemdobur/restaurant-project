@@ -1,6 +1,5 @@
 var api = "http://localhost:9090/api/personnel" ;
 var personnelTable;
-var role;
 function init(){
 //    $('#passwordPolicy').hide();
     console.log('inside init' );

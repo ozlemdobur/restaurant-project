@@ -31,7 +31,7 @@ function getPersonnels(){
                 // process the data (json) and modify the DOM
                 console.log('Text Status:' + textStatus);
                 console.log('User:' + personnel);
-                top.location.href="/reservation";
+                top.location.href="/reservationAdministration";
                 //top.location.href="/mainsystem?username="+username;
 
             },
