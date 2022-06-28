@@ -11,14 +11,18 @@ public class MainSystemMvcController {
         System.out.println("Inside deleteCustomerById");
         customerService.deleteCustomer(customerId);
         return ResponseEntity.ok( "Customer with id: " + customerId + " is deleted");*/
-
+/*
         @GetMapping("/mainsystem")
         public String getLoginPage(@RequestParam String username) {
             System.out.println(username);
             return "mainsystem";
-        }
+        }*/
 
 
+    @GetMapping("/mainsystem")
+    public String getLoginPage() {
+        return "mainsystem";
+    }
 /*    @GetMapping("/mainsystem/{username}")
     public String getLoginPage(@PathVariable String username) {
         System.out.println(username);

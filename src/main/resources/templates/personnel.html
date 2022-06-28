@@ -52,15 +52,15 @@
                 <form id="personnelForm">
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
-                        <input type="text" class="form-control" id="firstName" required>
+                        <input type="text" class="form-control" id="firstName" >
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
-                        <input type="text" class="form-control" id="lastName" required>
+                        <input type="text" class="form-control" id="lastName" >
                     </div>
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" required>
+                        <input type="text" class="form-control" id="username" >
                     </div>
                     <div class="form-group">
                         <!--                        <div  class="alert alert-danger h-25" role="alert" id="passwordPolicy">
@@ -70,14 +70,16 @@
                                                 </div>-->
                         <label id="passwordLabel" for="password">Password:</label>
                         <!--                        <input type="text" class="form-control" id="password">-->
-                        <input id="password" class="form-control" name="password" type="password" required/>
+                        <input id="password" class="form-control" name="password" type="password" />
                     </div>
-                    <div class="form-group">
-                        <label for="role">Role:</label>
-                        <input type="text" class="form-control" id="role" required>
-                    </div>
-                    <div class="invalid-feedback">
-                        Role is required
+                    <div class="form-group" role="group" id="role"><span style='color:red'>*</span>
+                        <label for="role" >Role</label>
+                        <input type="radio" class="btn-check" id="Admin" name="rol" value="Admin" checked>
+                        <label class="btn btn-outline-primary">Admin</label>
+                        <input type="radio" class="btn-check" id="Chef" name="rol" value="Chef">
+                        <label class="btn btn-outline-primary">Chef</label>
+                        <input type="radio" class="btn-check" id="HeadWaiter" name="rol" value="HeadWaiter">
+                        <label class="btn btn-outline-primary">HeadWaiter</label>
                     </div>
                     <div hidden>
                         <label for="id">User Id:</label>
