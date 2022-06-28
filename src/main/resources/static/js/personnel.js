@@ -3,14 +3,39 @@ var personnelTable;
 function init(){
 //    $('#passwordPolicy').hide();
     console.log('inside init' );
+    //For Role Button
+    $("#role").click( function () {
+    var ele = document.getElementsByName('rol');
+        for(i = 0; i < ele.length; i++) {
+            if(ele[i].checked){
+            role = ele[i].value;
+            //alert(ele[i].value);
+            }
+        }
+    });
+
     $("#create-personnel").click( function () {
         $('#personnelModal').modal('show');
+        $("#Admin").attr('checked',false);
+        $("#Chef").attr('checked',false);
+        $("#Headwaiter").attr('checked',false);
+
     });
     $("#edit-personnel").click( function () {
         if (personnelTable.row($('.selected')).data() == undefined) {
             alert("Select customer first");
         }else{
             var personnel = personnelTable.row($('.selected')).data();
+            if(personnel.role=="Admin"){
+                $("#Admin").attr('checked','checked');
+                role="Admin";
+            }else if(personnel.role=="Chef"){
+                $("#Chef").attr('checked','checked');
+                role="Chef";
+            }else if(personnel.role=="Headwaiter"){
+                 $("#Headwaiter").attr('checked','checked');
+                 role="Headwaiter";
+            }
             $("#id").val(personnel.id),
             $("#firstName").val(personnel.firstName),
             $("#lastName").val(personnel.lastName),
@@ -126,7 +151,7 @@ function createPersonnel(){
         lastName: $("#lastName").val(),
         username: $("#username").val(),
         password: $("#password").val() ,
-        role: $("#role").val()
+        role: role
     }
     console.log("ajavtan once");
     // Transform Javascript object to json
@@ -149,13 +174,13 @@ function createPersonnel(){
             $('#personnelModal').modal('hide');
             getPersonnel();
             },
-            done: function(xhr,status,error){
+/*            done: function(xhr,status,error){
                 console.log('Text Status:' + status);
-            },
+            },*/
             error: function(xhr,status,error){
                 console.log('Text Status:' + status);
                 console.log("error "+xhr.error);
-                toastr.info('Enter the strong password! Password must be min 8 character.(1 upper, 1 lower, 1 numeric, 1 character)');
+                toastr.info('Note the password policy and mandatory fields!');
 //                $("#passwordPolicy").attr('class', 'alert alert-danger d-block');
             },
             fail: function (error) {
