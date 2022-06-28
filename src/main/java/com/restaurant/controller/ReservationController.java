@@ -20,15 +20,13 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-
-    // http://localhost:9090/api/reservation
-    @GetMapping(value = "/reservation", produces = MediaType.APPLICATION_JSON_VALUE)
+    // http://localhost:9090/api/reservationAdministration
+    @GetMapping(value = "/reservationAdministration", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Iterable<Reservation>> getAllReservations() {
         System.out.println("Inside getAllReservations");
         Iterable<Reservation> reservations = reservationService.findAll();
         return ResponseEntity.ok(reservations);
     }
-
 
     // http://localhost:9090/api/reservation
     @GetMapping(value = "/reservation/{firstName}", produces= MediaType.APPLICATION_JSON_VALUE)
@@ -38,8 +36,8 @@ public class ReservationController {
         return ResponseEntity.ok(reservation);
     }
 
-      // http://localhost:9090/api/reservation
-    @PostMapping(value = "/reservation", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+      // http://localhost:9090/api/reservationAdministration
+    @PostMapping(value = "/reservationAdministration", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reservation> makeReservation(@RequestBody Reservation reservation) {
         System.out.println("Inside makeReservation");
         Reservation reservationMade = reservationService.makeReservation(reservation);

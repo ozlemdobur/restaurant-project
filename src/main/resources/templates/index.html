@@ -7,14 +7,28 @@
 <!--    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <!--========== BOX ICONS ==========-->
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+<!--    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>-->
 
     <!--========== CSS ==========-->
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">-->
+
 
     <title>Responsive website food</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<!--    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>-->
+    <script type="text/javascript" src="/js/reservation.js"></script>
     <script type="text/javascript">
+    $(document).ready(function() {
         init();
+    })
     </script>
 </head>
 <body>
@@ -60,9 +74,65 @@
             <div class="home__data">
                 <h1 class="home__title">Tasty food</h1>
                 <h2 class="home__subtitle">Once you try it,<br> you will love it</h2>
-                <a id="reservation-button" ms-hide-element="true" class="button logout login w-button" href="/reservation" onclick=";window.location.href=this.getAttribute('href');return false;">Reservation</a>
+                <button id="reservation-button" ms-hide-element="true" class="button logout login w-button" >Reservation</button>
+<!--                href="/reservation" onclick=";window.location.href=this.getAttribute('href');return false;"-->
             </div>
             <img src="/img/home.png" alt="" class="home__img">
+        </div>
+        <div id="reservationModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Make Reservation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reservationForm">
+                            <div hidden>
+                                <label for="id">Id:</label>
+                                <input type="text" class="form-control" id="id">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone:</label>
+                                <input type="tel" pattern="[06]{2}-[0-9]{8}" placeholder="06-12345678" class="form-control" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input type="text" class="form-control datepicker" id="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time:</label>
+                                <input type="text" class="form-control timepicker" id="time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="howManyPeople">Person:</label>
+                                <input type="number" class="form-control" id="howManyPeople" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="isBabyChair">Baby Chair:</label>
+                                <input id="isBabyChair" type="checkbox" value="false">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="submit-reservation" class="btn btn-primary">Submit</button>
+                                <button id="closeButton" type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

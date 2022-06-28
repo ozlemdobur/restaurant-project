@@ -1,10 +1,26 @@
-var api = "http://localhost:9090/api/reservation";
+var api = "http://localhost:9090/api/reservationAdministration";
 var reservationTable;
+var babyChair;
 
 function init(){
     console.log('inside init');
+
+    $("#isBabyChair").click( function () {
+        babyChair = document.getElementById('isBabyChair');
+        babyChair.value = babyChair.checked;
+    });
+
     $("#newReservationButton").click( function () {
         console.log("Inside click of newReservationButton");
+        $("#id").val('');
+        $("#firstName").val('');
+        $("#lastName").val('');
+        $("#email").val('');
+        $("#phone").val('');
+        $("#date").val('');
+        $("#time").val('');
+        $("#howManyPeople").val('');
+        $("#isBabyChair").val('');
         $('#reservationModal').modal('show');
     });
 
@@ -23,18 +39,19 @@ function init(){
             $("#date").val(reservation.date);
             $("#time").val(reservation.time);
             $("#howManyPeople").val(reservation.howManyPeople);
+            $("#isBabyChair").attr('checked', reservation.babyChair);
             $('#reservationModal').modal('show');
         }
     });
 
     $("#deleteReservationButton").click( function () {
-            console.log("Inside click of deleteReservationButton");
-            if (reservationTable.row($('.selected')).data() == undefined) {
-                alert("Select reservation first");
-            }else{
-                $('#reservationDeleteModal').modal('show');
-            }
-        });
+        console.log("Inside click of deleteReservationButton");
+        if (reservationTable.row($('.selected')).data() == undefined) {
+            alert("Select reservation first");
+        }else{
+            $('#reservationDeleteModal').modal('show');
+        }
+    });
 
     // Button in modal
     $("#deleteReservationConfirmButton").click( function () {
@@ -49,6 +66,7 @@ function init(){
         makeReservation();
         $('#reservationModal').modal('hide');
     });
+
     initReservationTable();
     // Get reservations from backend and and update table
     getReservationData();
@@ -73,11 +91,18 @@ function initReservationTable() {
             "data": "date" },
         { "title":  "Time",
             "data": "time" },
-        { "title":  "How Many People",
-            "data": "howManyPeople" }
-//        { "title":  "Baby Chair",
-//            "data": "babyChair",
-//          "render": function(babyChair) { babyChair ? "yes" : "no" }}
+        { "title":  "Person",
+            "data": "howManyPeople" },
+        { "title":  "Baby Chair",
+            "data": "babyChair",
+            render: function(data, type, row){
+                        if(data == true) {
+                            return '<span>Yes</span>';
+                        } else {
+                            return '<span>No</span>';
+                        }
+                    }
+        }
     ];
 
     // Define new table with above columns
@@ -87,14 +112,14 @@ function initReservationTable() {
     });
 
     $("#reservationTable tbody").on( 'click', 'tr', function () {
-            console.log("Clicking on row");
-            if ( $(this).hasClass('selected') ) {
-              $(this).removeClass('selected');
-            }
-            else {
-                reservationTable.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
+        console.log("Clicking on row");
+        if ( $(this).hasClass('selected') ) {
+          $(this).removeClass('selected');
+        }
+        else {
+            reservationTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
         });
 }
 
@@ -125,20 +150,20 @@ function makeReservation(){
     console.log('inside makeReservation' );
     // Put reservation data from page in Javascript object --- SIMILAR TO JSON
     var reservationData = {
-            id: $("#id").val(),
-            firstName: $("#firstName").val(),
-            lastName: $("#lastName").val(),
-            email: $("#email").val(),
-            phone: $("#phone").val(),
-            date: $("#date").val(),
-            time: $("#time").val(),
-            howManyPeople: $("#howManyPeople").val()
+        id: $("#id").val(),
+        firstName: $("#firstName").val(),
+        lastName: $("#lastName").val(),
+        email: $("#email").val(),
+        phone: $("#phone").val(),
+        date: $("#date").val(),
+        time: $("#time").val(),
+        howManyPeople: $("#howManyPeople").val(),
+        babyChair: $("#isBabyChair").val()
     }
 
     // Transform Javascript object to json
     var reservationJson = JSON.stringify(reservationData);
-    console.log(reservationJson);
-    alert("Reservation is successfully made!");
+    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
     $.ajax({
         url: api,
         type: "post",
@@ -157,7 +182,7 @@ function makeReservation(){
             $("#date").val('');
             $("#time").val('');
             $("#howManyPeople").val('');
-
+            $("#isBabyChair").val('');
           // Refresh table data
           getReservationData();
         },
