@@ -5,12 +5,31 @@ var babyChair;
 function init(){
     console.log('inside init');
 
+    $(".datepicker").datepicker({
+        firstDay: 1,
+        minDate: new Date(),
+        dateFormat: 'yy-mm-dd'
+    });
+
+    $('.timepicker').timepicker({
+        timeFormat: 'HH:mm',
+        interval: 30,
+        show2400: true,
+        minTime: '10:00',
+        maxTime: '22:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+
+    console.log($('.timepicker').val());
+
     $("#isBabyChair").click( function () {
         babyChair = document.getElementById('isBabyChair');
         babyChair.value = babyChair.checked;
     });
 
-    $("#newReservationButton").click( function () {
+    $("#newReservationButton").click(function () {
         console.log("Inside click of newReservationButton");
         $("#id").val('');
         $("#firstName").val('');
