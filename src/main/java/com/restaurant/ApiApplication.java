@@ -53,14 +53,13 @@ public class ApiApplication implements CommandLineRunner {
         product1 = productRepository.save(product);
 
         Reservation reservation1 = new Reservation(0, "Nuri", "Bayram", "nbayram4@gmail.com", "06-84613844", LocalDate.now(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()), 2, true);
-        Reservation reservation2 = new Reservation(0, "Ahmet", "Kocadag", "akocabas@icloud.com", "06-12345678", LocalDate.parse("2022-07-01"), LocalTime.parse("11:30"), 5, true);
-        Reservation reservation3 = new Reservation(0, "Ozlem", "Dobur", "odobur@yandex.com", "06-87654321", LocalDate.parse("2022-07-04"), LocalTime.parse("14:00"), 1, false);
-        Reservation reservation4 = new Reservation(0, "Halid", "Enes", "henes@gmail.com", "06-12345678", LocalDate.parse("2022-07-14"), LocalTime.parse("21:00"), 3, true);
+        Reservation reservation2 = new Reservation(0, "Ahmet", "Kocadag", "akocadag@icloud.com", "06-12345678", LocalDate.parse("2022-07-12"), LocalTime.parse("11:00"), 3, false);
+        Reservation reservation3 = new Reservation(0, "Ozlem", "Dobur", "odobur@yandex.com", "06-87654321", LocalDate.parse("2022-07-23"), LocalTime.parse("11:30"), 1, false);
+        Reservation reservation4 = new Reservation(0, "John", "de Witt", "jdewitt@molvenohotel.com", "06-4561133", LocalDate.parse("2022-07-01"), LocalTime.parse("15:30"), 4, false);
 
         reservationRepository.save(reservation1);
         reservationRepository.save(reservation2);
         reservationRepository.save(reservation3);
         reservationRepository.save(reservation4);
-
     }
 }

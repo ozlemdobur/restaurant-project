@@ -11,7 +11,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('#time').timepicker({
+    $('.time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
