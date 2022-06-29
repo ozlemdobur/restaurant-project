@@ -58,9 +58,14 @@ function init(){
         $('#personnelDeleteModal').modal('hide');
         });
            // Add submit event to form
-    $("#modalButton").click( function() {
+/*    $("#modalButton").click( function() {
         createPersonnel();
-    });
+    });*/
+        $("#personnelForm").submit( function(event) {
+            event.preventDefault();
+            createPersonnel();
+            $('#personnelDeleteModal').modal('hide');
+        });
     initPersonnelTable();
     getPersonnel();
 }

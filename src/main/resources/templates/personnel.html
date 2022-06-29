@@ -45,7 +45,7 @@
         <!-- Content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">User Menu</h4>
+                <h4 class="modal-title">Personnel Menu</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" >
@@ -79,7 +79,7 @@
                     <div class="invalid-feedback">
                         Role is required
                     </div>-->
-                    <div class="form-group" role="group" id="role"><span style='color:red'>*</span>
+                    <div class="form-group" role="group" id="role"><span style='color:red' required>*</span>
                         <label for="role" >Role</label>
                         <input type="radio" class="btn-check" id="Admin" name="rol" value="Admin" checked>
                         <label class="btn btn-outline-primary">Admin</label>
@@ -94,8 +94,8 @@
                     </div>
                     <div class="form-group">
                         <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
-                        <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
-                        <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
+                        <button id="modalButton" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="closeButton" type="submit" class="btn btn-default" data-dismiss="modal">Close
                         </button>
                     </div>
                 </form>
@@ -106,10 +106,10 @@
 <div class=“row”>
     <div class="modal-footer justify-content-center">
         <button type="button" id="create-personnel" class="btn btn-primary" data-toggle="modal"
-                data-target="#personnelModal" data-dismiss="modal">New User
+                data-target="#personnelModal" data-dismiss="modal">New Personnel
         </button>
-        <button class="btn btn-primary" id="edit-personnel" type="submit">Edit User</button>
-        <button class="btn btn-primary" id="delete-personnel" type="submit">Delete User</button>
+        <button class="btn btn-primary" id="edit-personnel" type="submit">Edit Personnel</button>
+        <button class="btn btn-primary" id="delete-personnel" type="submit">Delete Personnel</button>
     </div>
 </div>
 <div id="personnelDeleteModal" class="modal fade" role="dialog">
