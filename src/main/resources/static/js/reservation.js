@@ -15,7 +15,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('#timePicker').timepicker({
+    $('#time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
@@ -23,7 +23,8 @@ function init(){
         maxTime: '22:00',
         dynamic: false,
         dropdown: true,
-        scrollbar: true
+        scrollbar: true,
+        zindex: 9999999
     });
 
     $("#reservation-button").click( function () {

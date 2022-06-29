@@ -11,7 +11,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('.timepicker').timepicker({
+    $('#time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
@@ -19,10 +19,9 @@ function init(){
         maxTime: '22:00',
         dynamic: false,
         dropdown: true,
-        scrollbar: true
+        scrollbar: true,
+        zindex: 9999999
     });
-
-    console.log($('.timepicker').val());
 
     $("#isBabyChair").click( function () {
         babyChair = document.getElementById('isBabyChair');
@@ -182,7 +181,7 @@ function makeReservation(){
 
     // Transform Javascript object to json
     var reservationJson = JSON.stringify(reservationData);
-    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
+//    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
     $.ajax({
         url: api,
         type: "post",
