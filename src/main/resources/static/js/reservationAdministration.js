@@ -5,12 +5,30 @@ var babyChair;
 function init(){
     console.log('inside init');
 
+    $(".datepicker").datepicker({
+        firstDay: 1,
+        minDate: new Date(),
+        dateFormat: 'yy-mm-dd'
+    });
+
+    $('#time').timepicker({
+        timeFormat: 'HH:mm',
+        interval: 30,
+        show2400: true,
+        minTime: '10:00',
+        maxTime: '22:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+        zindex: 9999999
+    });
+
     $("#isBabyChair").click( function () {
         babyChair = document.getElementById('isBabyChair');
         babyChair.value = babyChair.checked;
     });
 
-    $("#newReservationButton").click( function () {
+    $("#newReservationButton").click(function () {
         console.log("Inside click of newReservationButton");
         $("#id").val('');
         $("#firstName").val('');
@@ -163,7 +181,7 @@ function makeReservation(){
 
     // Transform Javascript object to json
     var reservationJson = JSON.stringify(reservationData);
-    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
+//    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
     $.ajax({
         url: api,
         type: "post",

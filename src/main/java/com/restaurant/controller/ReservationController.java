@@ -45,7 +45,7 @@ public class ReservationController {
     }
 
     // http://9090/api/customer/3
-    @DeleteMapping(value = "/reservation/{id}", produces= MediaType.TEXT_PLAIN_VALUE)
+    @DeleteMapping(value = "/reservationAdministration/{id}", produces= MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteReservationById( @PathVariable Long id){
         System.out.println("Inside deleteReservationById");
         reservationService.deleteReservation(id);

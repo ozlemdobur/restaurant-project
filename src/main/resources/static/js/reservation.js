@@ -1,6 +1,7 @@
 var api = "http://localhost:9090/api/reservationAdministration";
 var babyChair;
 function init(){
+
     console.log('inside init');
 
     $("#isBabyChair").click( function () {
@@ -14,7 +15,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('.timepicker').timepicker({
+    $('#time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
@@ -22,7 +23,8 @@ function init(){
         maxTime: '22:00',
         dynamic: false,
         dropdown: true,
-        scrollbar: true
+        scrollbar: true,
+        zindex: 9999999
     });
 
     $("#reservation-button").click( function () {
@@ -30,8 +32,9 @@ function init(){
         $('#reservationModal').modal('show');
     });
 
-    $("#submit-reservation").click( function () {
-        console.log("Inside click of submit-reservation");
+    $("#reservationForm").submit(function(e) {
+        console.log("Inside click of reservationForm");
+        e.preventDefault();
         makeReservation();
         $('#reservationModal').modal('hide');
     });
@@ -54,7 +57,7 @@ function makeReservation(){
 
     // Transform Javascript object to json
     var reservationJson = JSON.stringify(reservationData);
-    alert("Dear " + $("#firstName").val() + " Your reservation is succeeded!");
+    alert("Dear " + $("#firstName").val() + "! Your reservation is succeeded!");
     $.ajax({
         url: api,
         type: "post",
