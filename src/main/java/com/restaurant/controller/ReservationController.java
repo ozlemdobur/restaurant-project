@@ -25,6 +25,7 @@ public class ReservationController {
     public ResponseEntity<Iterable<Reservation>> getAllReservations() {
         System.out.println("Inside getAllReservations");
         Iterable<Reservation> reservations = reservationService.findAll();
+//        System.out.println(reservations.toString());
         return ResponseEntity.ok(reservations);
     }
 

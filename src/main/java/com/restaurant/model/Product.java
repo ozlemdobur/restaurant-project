@@ -1,31 +1,45 @@
 package com.restaurant.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity()
+@Table(name="product")
 public class Product {
     @Id
+   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String productName;
     private String measurementUnit;
     private Double stockAmount;
-        private Double minumumLimit;
+    private Double minumumLimit;
     private String supplier;
+    private String brand;
+    private Double price;
+    private Double unitPrice;
 
-    public Product() {
-    }
-
-    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplierEmail) {
+    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier) {
         this.id = id;
         this.productName = productName;
         this.measurementUnit = measurementUnit;
         this.stockAmount = stockAmount;
         this.minumumLimit = minumumLimit;
-        this.supplier = supplierEmail;
+        this.supplier = supplier;
+    }
+
+    public Product() {
+    }
+
+    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier, String brand, Double price, Double unitPrice) {
+        this.id = id;
+        this.productName = productName;
+        this.measurementUnit = measurementUnit;
+        this.stockAmount = stockAmount;
+        this.minumumLimit = minumumLimit;
+        this.supplier = supplier;
+        this.brand = brand;
+        this.price = price;
+        this.unitPrice = unitPrice;
     }
 
     public Long getId() {
@@ -76,15 +90,27 @@ public class Product {
         this.supplier = supplier;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", measurementUnit='" + measurementUnit + '\'' +
-                ", stockAmount=" + stockAmount +
-                ", minumumLimit=" + minumumLimit +
-                ", supplier='" + supplier + '\'' +
-                '}';
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

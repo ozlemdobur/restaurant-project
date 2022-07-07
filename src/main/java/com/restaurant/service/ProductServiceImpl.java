@@ -5,8 +5,8 @@ import com.restaurant.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -36,8 +36,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Optional<Product> findByProduct(Long id) {
+        return productRepository.findById(id);
+    }
+
+    @Override
     public List<Product> getBiggerAmount(Long stockAmount) {
         return productRepository.findByStockAmountGreaterThan(stockAmount);
     }
+
+
 
 }
