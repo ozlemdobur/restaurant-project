@@ -2,14 +2,13 @@ var api = "http://localhost:9090/api/product" ;
 var productTable;
 var measurementUnit;
 function init(){
-//    $('#passwordPolicy').hide();
+
     console.log('inside init' );
     $("#measurementUnit").click( function () {
     var ele = document.getElementsByName('unit');
         for(i = 0; i < ele.length; i++) {
             if(ele[i].checked){
             measurementUnit = ele[i].value;
-            //alert(ele[i].value);
             }
         }
    });
@@ -20,6 +19,9 @@ function init(){
         $("#stockAmount").val('');
         $("#minumumLimit").val('');
         $("#supplier").val('');
+        $("#brand").val('');
+        $("#price").val('');
+        $("#unitPrice").val('');
         $("#piece").attr('checked',false);
         $("#gram").attr('checked',false);
         $("#litre").attr('checked',false);
@@ -46,6 +48,9 @@ function init(){
             $("#stockAmount").val(product.stockAmount),
             $("#minumumLimit").val(product.minumumLimit),
             $("#supplier").val(product.supplier),
+            $("#brand").val(product.brand),
+            $("#price").val(product.price),
+            $("#unitPrice").val(product.unitPrice),
             $('#productModal').modal('show');
         }
     });
@@ -61,23 +66,31 @@ function init(){
         deleteProduct();
         $('#personnelDeleteModal').modal('hide');
         });
-           // Add submit event to form
-    $("#modalButton").click( function() {
+    $("#productForm").submit( function(event) {
+        console.log("required control");
+        event.preventDefault();
+        console.log("required control");
         createProduct();
     });
+
     initProductTable();
     getProduct();
 }
 
 function initProductTable() {
     console.log('inside initUserTable' );
-    // Create columns (with titles) for datatable: id, name, address, age
     columns = [
         { "title":  "Product ID",
             "data": "id" ,
             "visible": false },
         { "title":  "Product Name",
             "data": "productName" },
+        { "title":  "Brand",
+            "data": "brand" },
+        { "title":  "Price",
+            "data": "price" },
+        { "title":  "Unit Price",
+            "data": "unitPrice" },
         { "title":  "Stock Amount",
             "data": "stockAmount" },
         { "title":  "Minumum Limit",
@@ -88,7 +101,6 @@ function initProductTable() {
             "data": "supplier",
                     render: function(data,type,row){
                           var supplier = row.supplier;
-//                          var html_part ="target="\"_blank"
                           if(row.stockAmount<row.minumumLimit){
                            return "<span style='color:red'>!!!     <a style='color:red' href="+supplier+" target=\"_blank\">"+supplier+"</a></span>";
                           } else {
@@ -118,8 +130,7 @@ function initProductTable() {
 
 function getProduct(){
     console.log('inside getUsers' );
-    // http:/localhost:9090/api/customer
-    // json list of customers
+
     $.ajax({
         url: api,
         type: "get",
@@ -146,11 +157,9 @@ function deleteProduct(){
             type: "delete",
             contentType: "application/json",
             dataType: "text",  // get back from frontend
-            // success: function(customer, textStatus, jqXHR){
             success: function(message){
                 console.log(message);
                 getProduct();
-                //initPersonnelTable();
             },
             fail: function (error) {
               console.log('Error: ' + error);
@@ -164,12 +173,14 @@ function createProduct(){
         id: $("#id").val(),
         productName: $("#productName").val(),
         stockAmount: $("#stockAmount").val(),
-        minumumLimit: $("#minumumLimit").val() ,
+        minumumLimit: $("#minumumLimit").val(),
+        brand: $("#brand").val(),
+        price: $("#price").val(),
+        unitPrice: $("#unitPrice").val(),
         measurementUnit: measurementUnit,
         supplier: $("#supplier").val()
     }
     console.log("ajavtan once");
-    // Transform Javascript object to json
     var productJson = JSON.stringify(productData);
     $.ajax({
         url: api,
@@ -178,14 +189,7 @@ function createProduct(){
         dataType: "json", //get back from fronted
         contentType: "application/json; charset=utf-8", // What we send to frontend
         success: function(product, textStatus, jqXHR){
-            console.log(product);/*
-            // Clear fields in page
-            $("#id").val('');
-            $("#productName").val('');
-            $("#stockAmount").val('');
-            $("#minumumLimit").val('');
-            $("#unit").val('');
-            $("#supplier").val('');*/
+            console.log(product);
             $('#productModal').modal('hide');
             getProduct();
             },
@@ -195,8 +199,6 @@ function createProduct(){
             error: function(xhr,status,error){
                 console.log('Text Status:' + status);
                 console.log("error "+xhr.error);
-                //toastr.info('Enter the strong password! Password must be min 8 character.(1 upper, 1 lower, 1 numeric, 1 character)');
-//                $("#passwordPolicy").attr('class', 'alert alert-danger d-block');
             },
             fail: function (error) {
                 console.log('Text Status:' + status);

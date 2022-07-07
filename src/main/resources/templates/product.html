@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User page</title>
-<!--    <link href="/css/main.css" rel="stylesheet"/>-->
+    <!--    <link href="/css/main.css" rel="stylesheet"/>-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
@@ -19,65 +19,12 @@
         });
     </script>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-    </style>
-
 </head>
 <body>
 
-<div th:insert="/fragments/header :: header"></div>
-<div th:insert="/fragments/menu :: menu"></div>
+<div class="container">
+    <div th:insert="/fragments/menu :: menu"></div>
+</div>
 </p>
 <div class="container">
     <table id="productTable" bgcolor="#F0F8FF" class="table table-striped" style="width:100%">
@@ -100,7 +47,34 @@
 
                     <div class="form-group">
                         <label for="productName">Product Name:</label>
-                        <input type="text" class="form-control" id="productName">
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brand" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="brand" placeholder="" value=""
+                        >
+                    </div>
+
+                    <div class="form-group" role="group" id="measurementUnit">
+                        <label for="measurementUnit">Measurement Unit</label>
+                        <input type="radio" class="btn-check" id="piece" name="unit" value="piece" required>
+                        <label class="btn btn-outline-primary">piece</label>
+                        <input type="radio" class="btn-check" id="gram" name="unit" value="gram" required>
+                        <label class="btn btn-outline-primary">gram</label>
+                        <input type="radio" class="btn-check" id="litre" name="unit" value="litre" required>
+                        <label class="btn btn-outline-primary">litre</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" placeholder="" value=""
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitPrice" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control" id="unitPrice" placeholder="" value="">
                     </div>
 
                     <div class="form-group">
@@ -114,16 +88,6 @@
                         <input type="number" class="form-control" id="minumumLimit" placeholder="" value="" required>
                     </div>
 
-                    <div class="form-group" role="group" id="measurementUnit">
-                        <label for="measurementUnit" >Measurement Unit</label>
-                        <input type="radio" class="btn-check" id="piece" name="unit" value="piece">
-                        <label class="btn btn-outline-primary">piece</label>
-                        <input type="radio" class="btn-check" id="gram" name="unit" value="gram">
-                        <label class="btn btn-outline-primary">gram</label>
-                        <input type="radio" class="btn-check" id="litre" name="unit" value="litre">
-                        <label class="btn btn-outline-primary">litre</label>
-                    </div>
-
                     <div class="form-group">
                         <label for="supplier" class="form-label">Supplier<span
                                 class="text-muted">(Optional)</span></label>
@@ -132,8 +96,8 @@
                     </div>
                     <div class="form-group">
                         <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
-                        <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
-                        <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
+                        <button id="modalButton" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="closeButton" type="submit" class="btn btn-default" data-dismiss="modal">Close
                         </button>
                     </div>
                 </form>
