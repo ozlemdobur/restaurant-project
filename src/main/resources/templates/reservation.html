@@ -13,26 +13,10 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="/js/reservationAdministration.js"></script>
+    <script type="text/javascript" src="/js/reservation.js"></script>
     <script>
         $(document).ready(function() {
             init();
-            $(".datepicker").datepicker({
-                firstDay: 1,
-                minDate: new Date(),
-                dateFormat: 'yy-mm-dd'
-            });
-
-            $('.timepicker').timepicker({
-                timeFormat: 'HH:mm',
-                interval: 30,
-                show2400: true,
-                minTime: '10:00',
-                maxTime: '22:00',
-                dynamic: false,
-                dropdown: true,
-                scrollbar: true
-            });
         })
     </script>
 </head>
@@ -52,6 +36,19 @@
                         <input type="text" class="form-control" id="id">
                     </div>
                     <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" class="form-control" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time:</label>
+                        <input type="text" class="form-control" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="howManyPeople">Person:</label>
+                        <input type="number" class="form-control" id="howManyPeople" required>
+                    </div>
+                    <hr>
+                    <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" class="form-control" id="firstName" required>
                     </div>
@@ -66,18 +63,6 @@
                     <div class="form-group">
                         <label for="phone">Phone:</label>
                         <input type="tel" pattern="[06]{2}-[0-9]{8}" placeholder="06-12345678" class="form-control" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="text" class="form-control datepicker" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="time">Time:</label>
-                        <input type="text" class="form-control timepicker" id="time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="howManyPeople">Person:</label>
-                        <input type="number" class="form-control" id="howManyPeople" required>
                     </div>
                     <div class="form-group">
                         <label for="isBabyChair">Baby Chair:</label>

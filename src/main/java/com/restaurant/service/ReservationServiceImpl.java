@@ -1,6 +1,8 @@
 package com.restaurant.service;
 
+import com.restaurant.exception.NoSuitableTableException;
 import com.restaurant.model.Reservation;
+import com.restaurant.model.TableRestaurant;
 import com.restaurant.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,9 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ReservationServiceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService {
 
     private ReservationRepository reservationRepository;
+    @Autowired
+    private TableRestaurantServiceImpl imp;
 
     public ReservationServiceImpl() {
     }
@@ -27,18 +31,17 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public Reservation makeReservation(Reservation reservation) {
-        Reservation reservationMade = reservationRepository.save(reservation);
-        return reservationMade;
-    }
-
-    @Override
-    public void deleteReservation(Long id) {
-        reservationRepository.deleteById(id);
-    }
-
-    @Override
     public Optional<Reservation> findByFirstName(String firstName) {
         return reservationRepository.findByFirstName(firstName);
+    }
+
+    @Override
+    public Reservation save(Reservation reservation) {
+        return reservationRepository.save(reservation);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        reservationRepository.deleteById(id);
     }
 }

@@ -1,5 +1,7 @@
 var api = "http://localhost:9090/api/reservationAdministration";
 var reservationTable;
+var newTableId="";
+var newTableNumber, newTableReserveEndTime, newTableReserveStartDate,newTableReserveStartTime;
 var babyChair;
 
 function init(){
@@ -79,15 +81,54 @@ function init(){
     });
 
     // Add submit event to form for new and edit
-    $("#reservationForm").on('submit', function() {
+    $("#sbmt").on('click', function() {
         console.log("Submitting");
-        makeReservation();
-        $('#reservationModal').modal('hide');
+//        $("#reservationForm").action = api;
+//        $("#reservationForm").method = "POST";
+//        var xhr = new XMLHttpRequest();
+//        xhr.open(form.method, form.action, true);
+//        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+//        var j = {
+//            "first_name":"binchen",
+//            "last_name":"heris",
+//        };
+//        xhr.send(JSON.stringify(j));
+        getFreeTable();
+        //makeReservation();
+        //$('#reservationModal').modal('hide');
     });
 
     initReservationTable();
     // Get reservations from backend and and update table
     getReservationData();
+}
+
+function getFreeTable(){
+/*    String strDate= $("#date").val().toString();
+    String strTime = $("#time").val().toString();*/
+    alert("inside getFreeTable");
+    console.log('inside checkFreeTable' );
+    $.ajax({
+        url: "http://localhost:9090/api/tableRestaurant/"+$("#howManyPeople").val()+"/"+ $("#date").val()+"/"+$("#time").val(),
+        type: "post",
+        dataType: "json",
+        success: function(tables){
+            console.log("success");
+            if (tables) {
+                alert("inside getFreeTable.There is a free table"+tables.id);
+                newTableId =tables.id;
+                /*newTableNumber= tables.tableNumber;
+                newTableReserveEndTime = tables.tableReserveEndTime;
+                newTableReserveStartDate =tables.tableReserveStartDate;
+                newTableReserveStartTime =tables.tableReserveStartTime;*/
+
+                makeReservation();
+            }
+        },
+        fail: function (error) {
+            console.log('Error: ' + error);
+        }
+    });
 }
 
 function initReservationTable() {
@@ -176,11 +217,20 @@ function makeReservation(){
         date: $("#date").val(),
         time: $("#time").val(),
         howManyPeople: $("#howManyPeople").val(),
-        babyChair: $("#isBabyChair").val()
-    }
+        babyChair: $("#isBabyChair").val(),
+       tableRestaurant: {
+            id :newTableId
+/*            tableNumber : newTableNumber,
+            tableReserveEndTime : newTableReserveEndTime,
+            tableReserveStartDate :newTableReserveStartDate,
+            tableReserveStartTime :newTableReserveStartTime*/
+            }
+        }
+    console.log(reservationData);
 
     // Transform Javascript object to json
     var reservationJson = JSON.stringify(reservationData);
+    console.log(reservationJson);
 //    alert($("Dear " + "#firstName").val() + " Your reservation is succeeded!");
     $.ajax({
         url: api,
