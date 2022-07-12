@@ -1,9 +1,8 @@
 package com.restaurant.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -17,15 +16,26 @@ public class Reservation {
     private String lastName;
     private String email;
     private String phone;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private LocalDate date;
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime time;
-    private int howManyPeople;
+    private Long howManyPeople;
     private boolean isBabyChair;
+
+    @ManyToOne
+//    @JoinColumn( name="tableId")
+//    @JoinTable(name="reservation_dinner_table")
+
+//    @JoinTable(name="reservation_dinner_table",
+//            joinColumns = @JoinColumn( name="reservation_id"),
+//            inverseJoinColumns = @JoinColumn( name="table_id"))
+    private TableRestaurant tableRestaurant;
 
     public Reservation() {
     }
 
-    public Reservation(long id, String firstName, String lastName, String email, String phone, LocalDate date,LocalTime time, int howManyPeople, boolean isBabyChair) {
+    public Reservation(Long id, String firstName, String lastName, String email, String phone, LocalDate date, LocalTime time, Long howManyPeople, boolean isBabyChair, TableRestaurant tableRestaurant) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,6 +45,7 @@ public class Reservation {
         this.time = time;
         this.howManyPeople = howManyPeople;
         this.isBabyChair = isBabyChair;
+        this.tableRestaurant = tableRestaurant;
     }
 
     @Override
@@ -49,13 +60,14 @@ public class Reservation {
                 ", time=" + time +
                 ", howManyPeople=" + howManyPeople +
                 ", isBabyChair=" + isBabyChair +
+                ", tableRestaurant=" + tableRestaurant +
                 '}';
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getFirstName() {
@@ -94,10 +106,10 @@ public class Reservation {
     public void setTime(LocalTime time) {
         this.time = time;
     }
-    public int getHowManyPeople() {
+    public Long getHowManyPeople() {
         return howManyPeople;
     }
-    public void setHowManyPeople(int howManyPeople) {
+    public void setHowManyPeople(Long howManyPeople) {
         this.howManyPeople = howManyPeople;
     }
     public boolean isBabyChair() {
@@ -105,5 +117,11 @@ public class Reservation {
     }
     public void setBabyChair(boolean babyChair) {
         this.isBabyChair = babyChair;
+    }
+    public TableRestaurant getTableRestaurant() {
+        return tableRestaurant;
+    }
+    public void setTableRestaurant(TableRestaurant tableRestaurant) {
+        this.tableRestaurant = tableRestaurant;
     }
 }

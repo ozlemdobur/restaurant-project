@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
-    Optional<Reservation> findByFirstName (String firstName);
+
+    Optional<Reservation> findByFirstName(String firstName);
 }

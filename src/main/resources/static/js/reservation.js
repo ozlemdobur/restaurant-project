@@ -1,7 +1,7 @@
 var api = "http://localhost:9090/api/reservationAdministration";
 var babyChair;
-function init(){
 
+function init(){
     console.log('inside init');
 
     $("#isBabyChair").click( function () {
@@ -9,7 +9,7 @@ function init(){
         babyChair.value = babyChair.checked;
     });
 
-    $(".datepicker").datepicker({
+    $("#date").datepicker({
         firstDay: 1,
         minDate: new Date(),
         dateFormat: 'yy-mm-dd'
@@ -64,7 +64,6 @@ function makeReservation(){
         data: reservationJson,    // json for request body
         contentType:"application/json; charset=utf-8", // What we send to frontend
         dataType: "json", // get back from frontend
-//        success: function(reservation, textStatus, jqXHR){
         success: function(reservation) {
             console.log(reservation);
             // Clear fields in page
