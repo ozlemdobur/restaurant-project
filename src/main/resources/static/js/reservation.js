@@ -1,7 +1,7 @@
 var api = "http://localhost:9090/api/reservationAdministration";
 var babyChair;
-function init(){
 
+function init(){
     console.log('inside init');
 
     $("#isBabyChair").click( function () {
@@ -9,7 +9,7 @@ function init(){
         babyChair.value = babyChair.checked;
     });
 
-    $(".datepicker").datepicker({
+    $("#date").datepicker({
         firstDay: 1,
         minDate: new Date(),
         dateFormat: 'yy-mm-dd'
@@ -35,10 +35,46 @@ function init(){
     $("#reservationForm").submit(function(e) {
         console.log("Inside click of reservationForm");
         e.preventDefault();
-        makeReservation();
+        createReservation();
         $('#reservationModal').modal('hide');
     });
 }
+
+function createReservation(){
+    console.log('inside createReservation' );
+    var resData = {
+        id: $("#id").val(),
+        firstName: $("#firstName").val(),
+        lastName: $("#lastName").val(),
+        email: $("#email").val(),
+        phone: $("#phone").val(),
+        date: $("#date").val(),
+        time: $("#time").val(),
+        howManyPeople: $("#howManyPeople").val(),
+        babyChair: $("#isBabyChair").val()
+    }
+
+    var resJson = JSON.stringify(resData);
+    $.ajax({
+        url: "http://localhost:9090/api/makeReservation",
+        type: "post",
+        data: resJson,    // json for request body
+        dataType: "json", //get back from fronted
+        contentType: "application/json; charset=utf-8", // What we send to frontend
+        success: function(reservation, textStatus, jqXHR){
+            alert("Your booked successesfully!");
+        },
+        error: function(xhr,status,error){
+            alert("All tables are booked. Please try again another day!");
+        },
+        fail: function (error) {
+            alert("All tables are booked. Please try again another day!");
+        },
+    });
+
+}
+
+/*
 
 function makeReservation(){
     console.log('inside makeReservation' );
@@ -64,7 +100,6 @@ function makeReservation(){
         data: reservationJson,    // json for request body
         contentType:"application/json; charset=utf-8", // What we send to frontend
         dataType: "json", // get back from frontend
-//        success: function(reservation, textStatus, jqXHR){
         success: function(reservation) {
             console.log(reservation);
             // Clear fields in page
@@ -83,4 +118,4 @@ function makeReservation(){
           console.log('Error: ' + error);
         }
     });
-}
+}*/
