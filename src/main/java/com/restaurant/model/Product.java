@@ -18,6 +18,7 @@ public class Product {
     private Double price;
     private Double unitPrice;
 
+/*
     public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier) {
         this.id = id;
         this.productName = productName;
@@ -26,6 +27,7 @@ public class Product {
         this.minumumLimit = minumumLimit;
         this.supplier = supplier;
     }
+*/
 
     public Product() {
     }

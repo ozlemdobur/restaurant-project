@@ -66,6 +66,7 @@ function init(){
             createPersonnel();
             $('#personnelDeleteModal').modal('hide');
         });
+
     initPersonnelTable();
     getPersonnel();
 }
@@ -185,7 +186,8 @@ function createPersonnel(){
             error: function(xhr,status,error){
                 console.log('Text Status:' + status);
                 console.log("error "+xhr.error);
-                toastr.info('Note the password policy and mandatory fields!');
+                toastr.info('Enter the strong password! Password must be min 8 character.(1 upper, 1 lower, 1 numeric, 1 character)');
+                //toastr.info('Note the password policy and mandatory fields!');
 //                $("#passwordPolicy").attr('class', 'alert alert-danger d-block');
             },
             fail: function (error) {
