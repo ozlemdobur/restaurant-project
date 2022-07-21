@@ -1,19 +1,13 @@
 package com.restaurant.service;
+
 import com.restaurant.model.Menu;
 
 import java.util.Optional;
-import java.util.List;
+
 public interface MenuService {
-
-
-        Optional<Menu> getMenuById(long id);
-
-        List<Menu> findAllMenu();
-
-        Menu save(Menu menu);
-
-//        Menu updateMenu(Menu menu);
-
-        void deleteMenu(long id);
-    }
-
+    Iterable<Menu> findAll();
+    Menu createMenu(Menu menu);
+    void deleteMenu(Long Id);
+    //void uploadPictureToMenu(String imagePath, Long id);
+    Optional<Menu> findById(Long id);
+}

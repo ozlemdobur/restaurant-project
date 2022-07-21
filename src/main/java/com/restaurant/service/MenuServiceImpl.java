@@ -1,53 +1,67 @@
 package com.restaurant.service;
 
+import com.restaurant.model.Ingredient;
 import com.restaurant.model.Menu;
+import com.restaurant.repository.IngredientRepository;
 import com.restaurant.repository.MenuRepository;
-
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class MenuServiceImpl implements MenuService {
-    @Autowired
+
     private MenuRepository menuRepository;
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    @Autowired
+    public MenuServiceImpl(MenuRepository menuRepository) {
+        this.menuRepository = menuRepository;
+    }
+
+
     @Override
-    public Optional<Menu> getMenuById(long id) {
-        return menuRepository.findById(id);
+    public Iterable<Menu> findAll() {
+        Iterable<Menu> menu = menuRepository.findAll();
+        return menu;
     }
 
     @Override
-    public List<Menu> findAllMenu() {
-        Iterable<Menu> menuIterable = menuRepository.findAll();
-        List<Menu> menuList = new ArrayList<>();
-        menuIterable.forEach(menuList::add);
-        return menuList;
+    public Menu createMenu(Menu menu) {
+        Menu menuCreated;
+        if (menu.getId() != null) {
+            List<Ingredient> ingredientList = ingredientRepository.getIngredientsByMenuId(menu.getId());
+            menuCreated = menuRepository.save(menu);
+            for (Ingredient ingList : ingredientList) {
+                ingredientRepository.saveMenuIdIntoIngredient(menu.getId(), ingList.getId());
+            }
+        } else {
+
+            menuCreated = menuRepository.save(menu);
+        }
+        return menuCreated;
     }
 
     @Override
-    public Menu save(Menu menu) {
-        return menuRepository.save(menu);
-    }
-
-//    @Override
-//    public Menu updateMenu(Menu menu) {
-//        Optional<Menu> menuOptional = menuRepository.findById(menu.getId());
-//        if (menuOptional.isEmpty()) throw new NotFoundException();
-//        menuOptional.get().setName(menu.getName());
-//        menuOptional.get().setPrice(menu.getPrice());
-//        menuOptional.get().setDescription(menu.getDescription());
-//        menuOptional.get().setType(menu.getType());
-//        menuRepository.save(menuOptional.get());
-//        return menuOptional.get();
-//    }
-
-    @Override
-    public void deleteMenu(long id) {
+    public void deleteMenu(Long id) {
         menuRepository.deleteById(id);
     }
+
+/*    @Override
+    public void uploadPictureToMenu(String imagePath, Long id) {
+        menuRepository.uploadPictureToMenu(imagePath,id);
+    }*/
+
+
+    @Override
+    public Optional<Menu> findById(Long id) {
+        Optional<Menu> menu = menuRepository.findById(id);
+        return menu;
+    }
+
+
 }
