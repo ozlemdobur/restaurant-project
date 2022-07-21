@@ -13,12 +13,14 @@ public class TableRestaurant {
     private Long id;
     private Long tableNumber;
     private Long tableSize;
+
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     //private LocalDate tableReserveStartDate;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     //private LocalTime tableReserveStartTime;
    // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     //private LocalTime tableReserveEndTime;
+
 
     public TableRestaurant() {
     }
@@ -27,11 +29,13 @@ public class TableRestaurant {
         this.id = id;
         this.tableNumber = tableNumber;
         this.tableSize = tableSize;
+
     }
 
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -60,5 +64,6 @@ public class TableRestaurant {
                 ", tableNumber=" + tableNumber +
                 ", tableSize=" + tableSize +
                 '}';
+
     }
 }

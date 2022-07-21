@@ -1,5 +1,6 @@
 package com.restaurant.service;
 
+import com.restaurant.exception.NoSuitableTableException;
 import com.restaurant.model.Reservation;
 import com.restaurant.model.TableRestaurant;
 import com.restaurant.repository.ReservationRepository;
@@ -21,6 +22,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private TableRestaurantServiceImpl imp;
 
 
     public ReservationServiceImpl() {
@@ -45,6 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Reservation save(Reservation reservation) {
         return reservationRepository.save(reservation);
+
     }
 
     @Override

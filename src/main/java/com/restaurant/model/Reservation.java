@@ -24,6 +24,7 @@ public class Reservation {
     private LocalTime time;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime endTime;
+
     private Long howManyPeople;
     private boolean isBabyChair;
     private Long tableId;
@@ -37,11 +38,22 @@ public class Reservation {
 //            inverseJoinColumns = @JoinColumn( name="table_id"))
     //private TableRestaurant tableRestaurant;
 
+    @ManyToOne
+//    @JoinColumn( name="tableId")
+//    @JoinTable(name="reservation_dinner_table")
+
+//    @JoinTable(name="reservation_dinner_table",
+//            joinColumns = @JoinColumn( name="reservation_id"),
+//            inverseJoinColumns = @JoinColumn( name="table_id"))
+    private TableRestaurant tableRestaurant;
+
     public Reservation() {
     }
 
 
+
     public Reservation(Long id, String firstName, String lastName, String email, String phone, LocalDate date, LocalTime time, LocalTime endTime, Long howManyPeople, boolean isBabyChair, Long tableId) {
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -52,7 +64,9 @@ public class Reservation {
         this.endTime = endTime;
         this.howManyPeople = howManyPeople;
         this.isBabyChair = isBabyChair;
+
         this.tableId = tableId;
+
     }
 
     @Override
@@ -68,6 +82,7 @@ public class Reservation {
                 ", endTime=" + endTime +
                 ", howManyPeople=" + howManyPeople +
                 ", isBabyChair=" + isBabyChair +
+
                 ", tableId=" + tableId +
                 '}';
     }
@@ -79,6 +94,7 @@ public class Reservation {
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
+
 
     public Long getId() {
         return id;
@@ -134,6 +150,7 @@ public class Reservation {
     public void setBabyChair(boolean babyChair) {
         this.isBabyChair = babyChair;
     }
+
 
     public Long getTableId() {
         return tableId;

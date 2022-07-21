@@ -24,4 +24,5 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
     public List<Reservation> getReservedTableSameTime(@Param("howManyPeople") Long howManyPeople,
                                               @Param("date") LocalDate date
                                               );
+
 }

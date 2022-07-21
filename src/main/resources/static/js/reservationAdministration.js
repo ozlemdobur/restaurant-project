@@ -13,7 +13,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('#time').timepicker({
+    $('.time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
@@ -83,8 +83,10 @@ function init(){
     // Add submit event to form for new and edit
     $("#sbmt").on('click', function() {
         console.log("Submitting");
+
         createReservation();
         $('#reservationModal').modal('hide');
+
     });
 
     initReservationTable();
@@ -125,6 +127,34 @@ function createReservation(){
         },
     });
 
+}
+
+function getFreeTable(){
+/*    String strDate= $("#date").val().toString();
+    String strTime = $("#time").val().toString();*/
+    alert("inside getFreeTable");
+    console.log('inside checkFreeTable' );
+    $.ajax({
+        url: "http://localhost:9090/api/tableRestaurant/"+$("#howManyPeople").val()+"/"+ $("#date").val()+"/"+$("#time").val(),
+        type: "post",
+        dataType: "json",
+        success: function(tables){
+            console.log("success");
+            if (tables) {
+                alert("inside getFreeTable.There is a free table"+tables.id);
+                newTableId =tables.id;
+                /*newTableNumber= tables.tableNumber;
+                newTableReserveEndTime = tables.tableReserveEndTime;
+                newTableReserveStartDate =tables.tableReserveStartDate;
+                newTableReserveStartTime =tables.tableReserveStartTime;*/
+
+                makeReservation();
+            }
+        },
+        fail: function (error) {
+            console.log('Error: ' + error);
+        }
+    });
 }
 
 function initReservationTable() {
