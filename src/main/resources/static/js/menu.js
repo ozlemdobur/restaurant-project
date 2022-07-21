@@ -1,94 +1,184 @@
 var api = "http://localhost:9090/api/menu" ;
 var menuTable;
+var menuType;
+
 function init(){
-//    $('#passwordPolicy').hide();
+
     console.log('inside init' );
-    $("#create-personnel").click( function () {
-        $('#personnelModal').modal('show');
+    $("#menuType").click( function () {
+    var ele = document.getElementsByName('mType');
+        for(i = 0; i < ele.length; i++) {
+            if(ele[i].checked){
+                menuType = ele[i].value;
+            }
+        }
+   });
+
+    $("#create-menu").click( function () {
+
+        variableMenuType = "";
+        console.log("create menu inside mtype"+variableMenuType );
+        $('#menuModal').modal('show');
+        clearForm();
+
     });
-    $("#edit-personnel").click( function () {
-        if (personnelTable.row($('.selected')).data() == undefined) {
-            alert("Select customer first");
+
+    $("#edit-menu").click( function () {
+        if (menuTable.row($('.selected')).data() == undefined) {
+            alert("You have to choose a menu!");
         }else{
-            var personnel = personnelTable.row($('.selected')).data();
-            $("#id").val(personnel.id),
-            $("#firstName").val(personnel.firstName),
-            $("#lastName").val(personnel.lastName),
-            $("#username").val(personnel.username),
-            $("#password").val(personnel.password),
-            $("#role").val(personnel.role),
-            $('#personnelModal').modal('show');
+            var menu = menuTable.row($('.selected')).data();
+
+            //Radio button is adjusted check value
+            menuType = menu.menuType;
+            $("#"+menuType+"").attr('checked','checked');
+
+            $("#id").val(menu.id),
+            $("#menuName").val(menu.menuName),
+            $("#price").val(menu.price),
+            $("#menuType").val(menu.menuType),
+            $("#imagePath").val(menu.imagePath),
+            $('#menuModal').modal('show');
         }
     });
-    $("#delete-personnel").click( function () {
-        if (personnelTable.row($('.selected')).data() == undefined) {
-            alert("You have to choose a personnel!");
+
+/*    $("#upload-menu").click( function () {
+        if (menuTable.row($('.selected')).data() == undefined) {
+            alert("You have to choose a menu!");
         }else{
-            $('#personnelDeleteModal').modal('show');
+            var menu = menuTable.row($('.selected')).data();
+            console.log(menu.imagePath);
+            $(menuPicture).attr("src", menu.imagePath);
+            $('#menuUploadModal').modal('show');
+        }
+    });*/
+
+    $("#delete-menu").click( function () {
+        if (menuTable.row($('.selected')).data() == undefined) {
+            alert("You have to choose a menu!");
+        }else{
+            $('#menuDeleteModal').modal('show');
         }
     });
-    $("#deleteCustomerConfirmButton").click( function () {
-        console.log("Inside click of deleteCustomerButton");
-        deletePersonnel();
-        $('#personnelDeleteModal').modal('hide');
+
+    $("#deleteMenuConfirmButton").click( function () {
+        console.log("Inside click of deletemenuButton");
+        deleteMenu();
+        $('#menuDeleteModal').modal('hide');
         });
+
+
+/*    $('input[type=file]').change(function (event) {
+
+         var output = document.getElementById('imagePath');
+         menuPicture.src = window.URL.createObjectURL(this.files[0]);
+         });*/
+
+/*    $("#uploadMenuConfirmButton").click( function () {
+        console.log("Inside click of uploadMenuConfirmButton");
+        uploadFile();
+        $('#menuUploadModal').modal('hide');
+        });*/
            // Add submit event to form
     $("#modalButton").click( function() {
-        createPersonnel();
+        createMenu();
     });
-    initPersonnelTable();
-    getPersonnel();
+    initMenuTable();
+    getMenu();
 }
 
-function initPersonnelTable() {
+/*async function uploadFile() {
+    var menu = menuTable.row($('.selected')).data();
+    //$(menuPicture).attr("src", menu.imagePath);
+    console.log("inside uploadfile function")    ;
+    let formData = new FormData();
+    formData.append("file", fileupload.files[0]);
+    formData.append("id", menu.id);
+    formData.append("menuName", menu.menuName);
+    let response = await fetch(api+"/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    if (response.status == 200) {
+        alert("File successfully uploaded.");
+        getMenu();
+    }
+}*/
+
+function clearForm(){
+
+  $('#frm input[type="text"]').each(function(){
+      $(this).val("");
+  });
+
+   var ele = document.getElementsByName("mType");
+   for(var i=0;i<ele.length;i++)
+      ele[i].checked = false;
+ }
+
+function initMenuTable() {
     console.log('inside initUserTable' );
-    // Create columns (with titles) for datatable: id, name, address, age
+
     columns = [
-        { "title":  "User ID",
+        { "title":  "Menu ID",
             "data": "id" ,
             "visible": false },
-        { "title":  "First Name",
-            "data": "firstName" },
-        { "title":  "Last Name",
-            "data": "lastName" },
-        { "title":  "Username",
-            "data": "username" },
-        { "title":  "Password",
-            "data": "password",
+        { "title":  "Image Path",
+            "data": "imagePath" ,
             "visible": false },
-        { "title": "Role",
-            "data": "role"},
+        { "title":  "Menu Name",
+            "data": "menuName" },
+        { "title":  "Price",
+            "data": "price" },
+        { "title":  "Menu Type",
+            "data": "menuType"},
+        {   "title":  "Ingredients",
+            targets: -1,
+            data: null,
+            defaultContent: '<button>Click!</button>',
+        },
     ];
 
     // Define new table with above columns
-    personnelTable = $("#personnelTable").DataTable( {
+    menuTable = $("#menuTable").DataTable( {
         "order": [[ 0, "asc" ]],
         "columns": columns
     });
-     $("#personnelTable tbody").on( 'click', 'tr', function () {
+
+     $("#menuTable tbody").on( 'click', 'tr', function () {
             console.log("Clicking on row");
             if ( $(this).hasClass('selected') ) {
               $(this).removeClass('selected');
              }
             else {
-                personnelTable.$('tr.selected').removeClass('selected');
+                menuTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
+
+        $('#menuTable tbody').on('click', 'button', function () {
+            $(this).removeClass('selected');
+            var menu = menuTable.row($(this).parents('tr')).data();
+            top.location.href="/ingredient?menuId="+menu.id;
+            alert("'menu id: " + menu.id);
+        });
+
     }
-function getPersonnel(){
-    console.log('inside getUsers' );
-    // http:/localhost:9090/api/customer
-    // json list of customers
+
+function getMenu(){
+
+    console.log('inside getMenus' );
+
     $.ajax({
         url: api,
         type: "get",
         dataType: "json",
-        success: function(personnels){
-            if (personnels) {
-                personnelTable.clear();
-                personnelTable.rows.add(personnels);
-                personnelTable.columns.adjust().draw();
+        success: function(menus){
+            if (menus) {
+                menuTable.clear();
+                menuTable.rows.add(menus);
+                menuTable.columns.adjust().draw();
             }
         },
         fail: function (error) {
@@ -96,20 +186,20 @@ function getPersonnel(){
         }
     });
 }
-function deletePersonnel(){
-    if (personnelTable.row($('.selected')).data() == undefined) {
-        alert("Select customer first");
+
+function deleteMenu(){
+    if (menuTable.row($('.selected')).data() == undefined) {
+        alert("You have to select a menu!");
     }else{
-        var personnel = personnelTable.row($('.selected')).data();
+        var menu = menuTable.row($('.selected')).data();
         $.ajax({
-            url: api + '/' + personnel.id,
+            url: api + '/' + menu.id,
             type: "delete",
             contentType: "application/json",
             dataType: "text",  // get back from frontend
-            // success: function(customer, textStatus, jqXHR){
             success: function(message){
                 console.log(message);
-                getPersonnel();
+                getMenu();
                 //initPersonnelTable();
             },
             fail: function (error) {
@@ -118,36 +208,27 @@ function deletePersonnel(){
         });
     }
 }
-function createPersonnel(){
-    console.log('inside createUser' );
-    var personnelData = {
+function createMenu(){
+    console.log("menuid in the createMenu : " +$("#id").val());
+    var MenuData = {
         id: $("#id").val(),
-        firstName: $("#firstName").val(),
-        lastName: $("#lastName").val(),
-        username: $("#username").val(),
-        password: $("#password").val() ,
-        role: $("#role").val()
+        menuName: $("#menuName").val(),
+        price: $("#price").val(),
+        menuType: menuType
+        //imagePath: $("#imagePath").val()
     }
-    console.log("ajavtan once");
-    // Transform Javascript object to json
-    var personnelJson = JSON.stringify(personnelData);
+
+    var menuJson = JSON.stringify(MenuData);
     $.ajax({
         url: api,
         type: "post",
-        data: personnelJson,    // json for request body
+        data: menuJson,    // json for request body
         dataType: "json", //get back from fronted
         contentType: "application/json; charset=utf-8", // What we send to frontend
-        success: function(personnel, textStatus, jqXHR){
-            console.log(personnel);
-            // Clear fields in page
-            $("#id").val('');
-            $("#firstName").val('');
-            $("#lastName").val('');
-            $("#username").val('');
-            $("#password").val('');
-            $("#role").val('');
-            $('#personnelModal').modal('hide');
-            getPersonnel();
+        success: function(menu, textStatus, jqXHR){
+            console.log(menu);
+            $('#menuModal').modal('hide');
+            getMenu();
             },
             done: function(xhr,status,error){
                 console.log('Text Status:' + status);
@@ -155,8 +236,6 @@ function createPersonnel(){
             error: function(xhr,status,error){
                 console.log('Text Status:' + status);
                 console.log("error "+xhr.error);
-                toastr.info('Enter the strong password! Password must be min 8 character.(1 upper, 1 lower, 1 numeric, 1 character)');
-//                $("#passwordPolicy").attr('class', 'alert alert-danger d-block');
             },
             fail: function (error) {
                 console.log('Text Status:' + status);
@@ -164,3 +243,4 @@ function createPersonnel(){
     });
 
 }
+

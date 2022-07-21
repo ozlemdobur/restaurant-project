@@ -13,56 +13,52 @@ public class TableRestaurant {
     private Long id;
     private Long tableNumber;
     private Long tableSize;
-    private LocalDate tableReserveStartDate;
-    private LocalTime tableReserveStartTime;
-    private LocalTime tableReserveEndTime;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
+    //private LocalDate tableReserveStartDate;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    //private LocalTime tableReserveStartTime;
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    //private LocalTime tableReserveEndTime;
 
     public TableRestaurant() {
     }
 
-    public TableRestaurant(Long id, Long tableNumber, Long tableSize, LocalDate tableReserveStartDate, LocalTime tableReserveStartTime, LocalTime tableReserveEndTime) {
+    public TableRestaurant(Long id, Long tableNumber, Long tableSize) {
         this.id = id;
         this.tableNumber = tableNumber;
         this.tableSize = tableSize;
-        this.tableReserveStartDate = tableReserveStartDate;
-        this.tableReserveStartTime = tableReserveStartTime;
-        this.tableReserveEndTime = tableReserveEndTime;
     }
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getTableNumber() {
         return tableNumber;
     }
+
     public void setTableNumber(Long tableNumber) {
         this.tableNumber = tableNumber;
     }
+
     public Long getTableSize() {
         return tableSize;
     }
+
     public void setTableSize(Long tableSize) {
         this.tableSize = tableSize;
     }
-    public LocalDate getTableReserveStartDate() {
-        return tableReserveStartDate;
-    }
-    public void setTableReserveStartDate(LocalDate tableReserveStartDate) {
-        this.tableReserveStartDate = tableReserveStartDate;
-    }
-    public LocalTime getTableReserveStartTime() {
-        return tableReserveStartTime;
-    }
-    public void setTableReserveStartTime(LocalTime tableReserveStartTime) {
-        this.tableReserveStartTime = tableReserveStartTime;
-    }
-    public LocalTime getTableReserveEndTime() {
-        return tableReserveEndTime;
-    }
-    public void setTableReserveEndTime(LocalTime tableReserveEndTime) {
-        this.tableReserveEndTime = tableReserveEndTime;
+
+    @Override
+    public String toString() {
+        return "TableRestaurant{" +
+                "id=" + id +
+                ", tableNumber=" + tableNumber +
+                ", tableSize=" + tableSize +
+                '}';
     }
 }

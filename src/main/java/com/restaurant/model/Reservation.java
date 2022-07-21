@@ -18,24 +18,30 @@ public class Reservation {
     private String phone;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private LocalDate date;
+
    // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime time;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private LocalTime endTime;
     private Long howManyPeople;
     private boolean isBabyChair;
+    private Long tableId;
 
-    @ManyToOne
+    //@ManyToOne
 //    @JoinColumn( name="tableId")
 //    @JoinTable(name="reservation_dinner_table")
 
 //    @JoinTable(name="reservation_dinner_table",
 //            joinColumns = @JoinColumn( name="reservation_id"),
 //            inverseJoinColumns = @JoinColumn( name="table_id"))
-    private TableRestaurant tableRestaurant;
+    //private TableRestaurant tableRestaurant;
 
     public Reservation() {
     }
 
-    public Reservation(Long id, String firstName, String lastName, String email, String phone, LocalDate date, LocalTime time, Long howManyPeople, boolean isBabyChair, TableRestaurant tableRestaurant) {
+
+    public Reservation(Long id, String firstName, String lastName, String email, String phone, LocalDate date, LocalTime time, LocalTime endTime, Long howManyPeople, boolean isBabyChair, Long tableId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,9 +49,10 @@ public class Reservation {
         this.phone = phone;
         this.date = date;
         this.time = time;
+        this.endTime = endTime;
         this.howManyPeople = howManyPeople;
         this.isBabyChair = isBabyChair;
-        this.tableRestaurant = tableRestaurant;
+        this.tableId = tableId;
     }
 
     @Override
@@ -58,10 +65,19 @@ public class Reservation {
                 ", phone='" + phone + '\'' +
                 ", date=" + date +
                 ", time=" + time +
+                ", endTime=" + endTime +
                 ", howManyPeople=" + howManyPeople +
                 ", isBabyChair=" + isBabyChair +
-                ", tableRestaurant=" + tableRestaurant +
+                ", tableId=" + tableId +
                 '}';
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     public Long getId() {
@@ -118,10 +134,12 @@ public class Reservation {
     public void setBabyChair(boolean babyChair) {
         this.isBabyChair = babyChair;
     }
-    public TableRestaurant getTableRestaurant() {
-        return tableRestaurant;
+
+    public Long getTableId() {
+        return tableId;
     }
-    public void setTableRestaurant(TableRestaurant tableRestaurant) {
-        this.tableRestaurant = tableRestaurant;
+
+    public void setTableId(Long tableId) {
+        this.tableId = tableId;
     }
 }

@@ -13,7 +13,7 @@ function init(){
         dateFormat: 'yy-mm-dd'
     });
 
-    $('.time').timepicker({
+    $('#time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
         show2400: true,
@@ -83,52 +83,48 @@ function init(){
     // Add submit event to form for new and edit
     $("#sbmt").on('click', function() {
         console.log("Submitting");
-//        $("#reservationForm").action = api;
-//        $("#reservationForm").method = "POST";
-//        var xhr = new XMLHttpRequest();
-//        xhr.open(form.method, form.action, true);
-//        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-//        var j = {
-//            "first_name":"binchen",
-//            "last_name":"heris",
-//        };
-//        xhr.send(JSON.stringify(j));
-        getFreeTable();
-        //makeReservation();
-        //$('#reservationModal').modal('hide');
+        createReservation();
+        $('#reservationModal').modal('hide');
     });
 
     initReservationTable();
     // Get reservations from backend and and update table
     getReservationData();
 }
+function createReservation(){
+    console.log('inside createReservation' );
+    var resData = {
+        id: $("#id").val(),
+        firstName: $("#firstName").val(),
+        lastName: $("#lastName").val(),
+        email: $("#email").val(),
+        phone: $("#phone").val(),
+        date: $("#date").val(),
+        time: $("#time").val(),
+        howManyPeople: $("#howManyPeople").val(),
+        babyChair: $("#isBabyChair").val()
+    }
 
-function getFreeTable(){
-/*    String strDate= $("#date").val().toString();
-    String strTime = $("#time").val().toString();*/
-    alert("inside getFreeTable");
-    console.log('inside checkFreeTable' );
+    var resJson = JSON.stringify(resData);
     $.ajax({
-        url: "http://localhost:9090/api/tableRestaurant/"+$("#howManyPeople").val()+"/"+ $("#date").val()+"/"+$("#time").val(),
+        url: "http://localhost:9090/api/makeReservation",
         type: "post",
-        dataType: "json",
-        success: function(tables){
-            console.log("success");
-            if (tables) {
-                alert("inside getFreeTable.There is a free table"+tables.id);
-                newTableId =tables.id;
-                /*newTableNumber= tables.tableNumber;
-                newTableReserveEndTime = tables.tableReserveEndTime;
-                newTableReserveStartDate =tables.tableReserveStartDate;
-                newTableReserveStartTime =tables.tableReserveStartTime;*/
-
-                makeReservation();
-            }
+        data: resJson,    // json for request body
+        dataType: "json", //get back from fronted
+        contentType: "application/json; charset=utf-8", // What we send to frontend
+        success: function(reservation, textStatus, jqXHR){
+            getReservationData();
+            console.log(reservation);
+            alert("Your booked successesfully!");
+        },
+        error: function(xhr,status,error){
+            alert("All tables are booked. Please try again another day!");
         },
         fail: function (error) {
-            console.log('Error: ' + error);
-        }
+            alert("All tables are booked. Please try again another day!");
+        },
     });
+
 }
 
 function initReservationTable() {
@@ -138,6 +134,8 @@ function initReservationTable() {
         { "title":  "Reservation ID",
             "data": "id",
              "visible": false},
+        { "title":  "Table No",
+            "data": "tableId" },
         { "title":  "First Name",
             "data": "firstName" },
         { "title":  "Last Name",
@@ -166,7 +164,7 @@ function initReservationTable() {
 
     // Define new table with above columns
     reservationTable = $("#reservationTable").DataTable( {
-        "order": [[ 0, "asc" ]],
+        "order": [[ 6, "asc" ]],
         "columns": columns
     });
 

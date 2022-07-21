@@ -1,128 +1,125 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.98.0">
-    <title>Ingredient</title>
+    <meta charset="UTF-8">
+    <title>Ingredients page</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/js/ingredient.js"></script>
+    <script>
+        $( document ).ready(function() {
+            console.log( "initializing" );
+            init();
+        });
 
-<!--    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">-->
+    </script>
 
-
-
-
-
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container">
-    <main>
-        <hr class="my-4">
-
-        <h4 class="mb-3">Ingredient</h4>
-
-
-        <div class="row gy-1">
-            <div class="col-md-6">
-                <label for="p-id" class="form-label">Product Id</label>
-                <input type="text" class="form-control" id="product-id" placeholder="" required>
-            </div>
-
-            <div class="col-md-6">
-                <label for="cc-number" class="form-label">Ingredient Amount</label>
-                <input type="text" class="form-control" id="ing-amount" placeholder="" required>
-                <div class="invalid-feedback">
-                    Credit card number is required
-                </div>
-            </div>
-
-            <!--             <div class="col-md-3">
-                          <label for="cc-expiration" class="form-label">Expiration</label>
-                          <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                          <div class="invalid-feedback">
-                            Expiration date required
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                          <label for="cc-cvv" class="form-label">CVV</label>
-                          <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                          <div class="invalid-feedback">
-                            Security code required
-                          </div>
-                        </div>
-                      </div> -->
-
-            <hr class="my-4">
-
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Pay</button>
-            </form>
-        </div>
+    <div th:insert="/fragments/menu :: menu"></div>
 </div>
-</main>
 
-<script src="../static/js/bootstrap.bundle.min.js"></script>
+</p>
+<hr>
+<div style="width: 100%;">
 
-<script src="form-validation.js"></script>
+    <div style="width: 50%; float: left;">
+        <h3>
+            <center><label style="text-align:center;font-weight: bold;" class="label label-primary" id="lbl-product">Product
+                List</label></center>
+        </h3>
+        <br>
+        <button type="submit" id="create-ingredient" class="btn btn-primary" data-dismiss="modal">New Ingredient
+        </button>
+        <br>
+        <table id="productTable" bgcolor="#F0F8FF" class="table table-striped" style="width:100%"></table>
+    </div>
+
+    <div style="width: 50%; float: left;">
+        <h3>
+            <center><label style="text-align:center;font-weight: bold;" class="label label-primary"
+                           id="lbl-menuName"></label></center>
+        </h3>
+        <br>
+        <!--<button class="btn btn-primary" id="edit-ingredient" type="submit">Edit Ingredient</button>-->
+        <button class="btn btn-primary" id="delete-ingredient" type="submit">Delete Ingredient</button>
+        <br>
+        <table id="ingredientTable" bgcolor="#87CEFA" class="table table-striped" style="width: 100%; "></table>
+    </div>
+
+</div>
+
+<!--<div th:insert="/fragments/footer :: footer"></div>-->
+
+</p>
+<div id="ingredientModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ingredient Setting</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="ingredientForm">
+                    <div hidden>
+                        <label for="id">Ingredient Id:</label>
+                        <input type="text" class="form-control" id="id">
+                    </div>
+
+                    <div hidden>
+                        <label for="productId">Product Id:</label>
+                        <input type="text" class="form-control" id="productId">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Ingredient Name:</label>
+                        <input type="text" class="form-control" id="productName" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingAmount" class="form-label">Ingredient Amount</label>
+                        <input type="number" class="form-control" id="ingAmount" placeholder="" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button id="modalButton" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ingredientDeleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Ingredient</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                This record will delete.Are you sure?
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" id="deleteIngredientConfirmButton" class="btn btn-danger" data-dismiss="modal">
+                    Delete
+                </button>
+                <button type="button" class="btn btn-secondary room-close-button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

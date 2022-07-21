@@ -1,104 +1,81 @@
-
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Menu page</title>
-    <link href="/css/main.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="/js/personnel.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
     <script>
         $( document ).ready(function() {
             console.log( "initializing" );
             init();
         });
 
-
-
     </script>
 
-    <style>
-    table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-    }
-
-    th, td {
-    text-align: left;
-    padding: 16px;
-    }
-
-    tr:nth-child(even) {
-    background-color: #A00FEC;
-    }
-
-
-
-    </style>
 </head>
 <body>
 
-<div th:insert="/fragments/header :: header"></div>
-
-
-<p/>
 <div class="container">
-    <table id="personnelTable" bgcolor="#F0F8FF" class="table table-striped" style="width:100%">
+    <div th:insert="/fragments/menu :: menu"></div>
+</div>
+</p>
+<div class="container">
+    <table id="menuTable" bgcolor="#F0F8FF" class="table table-striped" style="width:100%">
     </table>
 </div>
-<p/>
 
-<!--    <div class="container" id="personnels"></div>
-    <div class="container">-->
-<div id="personnelModal" class="modal fade" role="dialog">
+</p>
+<div id="menuModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!-- Content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Menus of Menu</h4>
+                <h4 class="modal-title">Menu List</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="personnelForm">
-                    <div class="form-group">
-                        <label for="firstName"> Name:</label>
-                        <input type="text" class="form-control" id="firstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Description:</label>
-                        <input type="text" class="form-control" id="lastName">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Type:</label>
-                        <input type="text" class="form-control" id="username">
-                    </div>
-                    <div class="form-group">
-                        <!--                        <div  class="alert alert-danger h-25" role="alert" id="passwordPolicy">
-                                                  <span>
-                                                    <p style= "font-size: 15px;">Enter the strong password!</p>
-                                                  </span>
-                                                </div>-->
-                        <label id="passwordLabel" for="password">Password:</label>
-                        <!--                        <input type="text" class="form-control" id="password">-->
-                        <input id="password" class="form-control" name="password" type="password"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Type:</label>
-                        <input type="text" class="form-control" id="role">
-                    </div>
+                <form id="menuForm">
                     <div hidden>
-                        <label for="id">info:</label>
+                        <label for="id">Menu Id:</label>
                         <input type="text" class="form-control" id="id">
                     </div>
+
+                    <div class="form-group">
+                        <label for="menuName">Menu Name:</label>
+                        <input type="text" class="form-control" id="menuName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" placeholder="" value=""
+                               required>
+                    </div>
+
+                    <div class="form-group" role="group" id="menuType">
+                        <label for="menuType">Menu Type</label>
+                        <input type="radio" class="btn-check" id="Starter" name="mType" value="Starter" checked>
+                        <label class="btn btn-outline-primary">Starter</label>
+                        <input type="radio" class="btn-check" id="Maincourse" name="mType" value="Maincourse">
+                        <label class="btn btn-outline-primary">Maincourse</label>
+                        <input type="radio" class="btn-check" id="Drink" name="mType" value="Drink">
+                        <label class="btn btn-outline-primary">Drink</label>
+                        <input type="radio" class="btn-check" id="Dessert" name="mType" value="Dessert">
+                        <label class="btn btn-outline-primary">Dessert</label>
+                    </div>
+
+<!--                    <div class="form-group">
+                        <label for="imagePath" class="form-label">Image<span
+                                class="text-muted">(Optional)</span></label>
+
+                        <input type="text" class="form-control" id="imagePath"  accept="image/*"
+                               placeholder="">
+                    </div>-->
                     <div class="form-group">
                         <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
                         <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
@@ -112,26 +89,53 @@
 </div>
 <div class=“row”>
     <div class="modal-footer justify-content-center">
-        <button type="button" id="create-personnel" class="btn btn-primary" data-toggle="modal"
-                data-target="#personnelModal">New Menu
+        <button type="button" id="create-menu" class="btn btn-primary" data-dismiss="modal">New Menu
         </button>
-        <button class="btn btn-primary" id="edit-personnel" type="submit">Edit Menu</button>
-        <button class="btn btn-primary" id="delete-personnel" type="submit">Delete Menu</button>
+        <button class="btn btn-primary" id="edit-menu" type="submit">Edit Menu</button>
+        <!--<button class="btn btn-primary" id="upload-menu" type="submit">Upload Picture</button>-->
+        <button class="btn btn-primary" id="delete-menu" type="submit">Delete Menu</button>
     </div>
 </div>
-<div id="personnelDeleteModal" class="modal fade" role="dialog">
+
+<!--
+<div id="menuUploadModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        &lt;!&ndash; Content&ndash;&gt;
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Menu Picture</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="menuPicture" name="menuPicture" src="" width="200" height="200">
+                <input id="fileupload" type="file" name="fileupload" />
+                &lt;!&ndash;                This record will delete.Are you sure?&ndash;&gt;
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" id="uploadMenuConfirmButton" class="btn btn-danger" data-dismiss="modal">
+                    Upload Picture
+                </button>
+                <button type="button" class="btn btn-secondary room-close-button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+<div id="menuDeleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">New Menu</h4>
+                <h4 class="modal-title">Delete Menu</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                Are you sure?
+                This record will delete.Are you sure?
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" id="deleteCustomerConfirmButton" class="btn btn-danger" data-dismiss="modal">
+                <button type="button" id="deleteMenuConfirmButton" class="btn btn-danger" data-dismiss="modal">
                     Delete
                 </button>
                 <button type="button" class="btn btn-secondary room-close-button" data-dismiss="modal">Cancel</button>

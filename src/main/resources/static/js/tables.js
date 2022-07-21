@@ -33,9 +33,9 @@ function init(){
         $("#id").val('');
         $("#tableNumber").val('');
         $("#tableSize").val('');
-        $("#tableReserveStartDate").val('');
+        /*$("#tableReserveStartDate").val('');
         $("#tableReserveStartTime").val('');
-        $("#tableReserveEndTime").val('');
+        $("#tableReserveEndTime").val('');*/
         $('#tableModal').modal('show');
     });
 
@@ -49,9 +49,9 @@ function init(){
             $("#tableNumber").val(table.tableNumber);
             $("#tableSize").val(table.tableSize);
 //            $("#isEmptyTable").attr('checked', table.emptyTable);
-            $("#tableReserveStartDate").val(table.tableReserveStartDate);
+            /*$("#tableReserveStartDate").val(table.tableReserveStartDate);
             $("#tableReserveStartTime").val(table.tableReserveStartTime);
-            $("#tableReserveEndTime").val(table.tableReserveEndTime);
+            $("#tableReserveEndTime").val(table.tableReserveEndTime);*/
             $('#tableModal').modal('show');
         }
     });
@@ -86,7 +86,7 @@ function initTableTables() {
         { "title":  "Table No",
             "data": "tableNumber" },
         { "title":  "Table Size",
-            "data": "tableSize" },
+            "data": "tableSize" }
 //        { "title":  "Is Empty",
 //            "data": "emptyTable",
 //            render: function(data, type, row){
@@ -97,12 +97,14 @@ function initTableTables() {
 //                        }
 //                    }
 //        }
+/*
         { "title": "Reserve Date",
                     "data": "tableReserveStartDate"},
         { "title": "Start Time",
             "data": "tableReserveStartTime"},
         { "title": "End Time",
             "data": "tableReserveEndTime"}
+*/
     ];
 
 
@@ -147,11 +149,11 @@ function createTable(){
     var tableData = {
         id: $("#id").val(),
         tableNumber: $("#tableNumber").val(),
-        tableSize: $("#tableSize").val(),
+        tableSize: $("#tableSize").val()
 //        emptyTable: $("#isEmptyTable").val()
-        tableReserveStartDate: $("#tableReserveStartDate").val(),
+/*        tableReserveStartDate: $("#tableReserveStartDate").val(),
         tableReserveStartTime: $("#tableReserveStartTime").val(),
-        tableReserveEndTime: $("#tableReserveEndTime").val()
+        tableReserveEndTime: $("#tableReserveEndTime").val()*/
     }
 
     var tableJson = JSON.stringify(tableData);
@@ -168,9 +170,9 @@ function createTable(){
             $("#tableNumber").val('');
             $("#tableSize").val('');
 //            $("#isEmptyTable").val('');
-            $("#tableReserveStartDate").val(),
+/*            $("#tableReserveStartDate").val(),
             $("#tableReserveStartTime").val('');
-            $("#tableReserveEndTime").val('');
+            $("#tableReserveEndTime").val('');*/
             getTablesData();
         },
         fail: function (error) {
