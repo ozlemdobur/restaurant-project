@@ -40,14 +40,7 @@ public class ApiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Personnel user = new Personnel(null, "John", "de Witt", "witt", "AAaa11..", "Admin");
-        Personnel user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "AAaa11..", "Admin");
-        user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "AAaa11..", "Admin");
-        user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", "Admin");
-        user2 = personnelRepository.save(user);
+
 
        Product product = new Product(null, "Meat", "gram", 1000.0,20000.0,"https://www.bol.com/nl/nl/","Dukes",20D,5D);
         Product product1 = productRepository.save(product);
@@ -59,30 +52,132 @@ public class ApiApplication implements CommandLineRunner {
         product1 = productRepository.save(product);
         product = new Product(null, "Lettuce", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
         product1 = productRepository.save(product);
+        product = new Product(null, "Salmon", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Carrot", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Aubergine", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Sausage", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Cheese", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Nut", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Butter", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Sugar", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Rice", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Kip", "piece", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Apple", "liter", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
+        product = new Product(null, "Orange", "liter", 100.0, 10.0,"https://www.bol.com/nl/nl/","Groen",2D,2D);
+        product1 = productRepository.save(product);
 
-        Set<Ingredient> ingredients = new HashSet<>();
-        ingredients.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(1)));
-        ingredients.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(2)));
-        ingredients.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(3)));
-        ingredientRepository.saveAll(ingredients);
+        Set<Ingredient> ingredientTomatoSoup = new HashSet<>();
+        ingredientTomatoSoup.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(1)));
+        ingredientTomatoSoup.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(4)));
+        ingredientTomatoSoup.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(10)));
+        ingredientRepository.saveAll(ingredientTomatoSoup);
 
-        Set<Ingredient> ingredients2 = new HashSet<>();
-        ingredients2.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(1)));
-        ingredients2.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(2)));
-        ingredients2.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(3)));
-        ingredientRepository.saveAll(ingredients2);
-        Ingredient ingredient = new Ingredient();
-        ingredient.setIngAmount(Double.valueOf(5));
-        ingredient.setproduct(product);
-        //ingredient.setMenu(menu);
-        ingredientRepository.save(ingredient);
-        Menu menu = new Menu(null,"Salad", BigDecimal.valueOf(20.0),"Starter","\\img\\menuPicture\\salad.png",ingredients );
-        menuRepository.save(menu);
+        Set<Ingredient> ingredientChickenSoup = new HashSet<>();
+        ingredientChickenSoup.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(14)));
+        ingredientChickenSoup.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(3)));
+        ingredientChickenSoup.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(11)));
+        ingredientRepository.saveAll(ingredientChickenSoup);
 
-        Menu menu2 = new Menu(null,"Tomato Soup", BigDecimal.valueOf(20.0),"Starter","\\img\\menuPicture\\tomato_soup.png",ingredients2 );
-        menuRepository.save(menu2);
-        menuRepository.save(menu);
-        menuRepository.save(menu2);
+        Set<Ingredient> ingredientSalad = new HashSet<>();
+        ingredientSalad.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(1)));
+        ingredientSalad.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(4)));
+        ingredientSalad.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(6)));
+        ingredientRepository.saveAll(ingredientSalad);
+
+        Set<Ingredient> ingredientsBaklava = new HashSet<>();
+        ingredientsBaklava.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(10)));
+        ingredientsBaklava.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(11)));
+        ingredientsBaklava.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(12)));
+        ingredientRepository.saveAll(ingredientsBaklava);
+
+        Set<Ingredient> ingredientsIce = new HashSet<>();
+        ingredientsIce.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(3)));
+        ingredientRepository.saveAll(ingredientsIce);
+
+        Set<Ingredient> ingredientsSutlac = new HashSet<>();
+        ingredientsSutlac.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(3)));
+        ingredientsSutlac.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(13)));
+        ingredientsSutlac.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(12)));
+        ingredientRepository.saveAll(ingredientsSutlac);
+
+        Set<Ingredient> ingredientsSalmon = new HashSet<>();
+        ingredientsSalmon.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(5)));
+        ingredientsSalmon.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(2)));
+        ingredientsSalmon.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(6)));
+        ingredientRepository.saveAll(ingredientsSalmon);
+
+        Set<Ingredient> ingredientsAndijvie = new HashSet<>();
+        ingredientsAndijvie.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(8)));
+        ingredientsAndijvie.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(4)));
+        ingredientsAndijvie.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(2)));
+        ingredientsAndijvie.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(12)));
+        ingredientRepository.saveAll(ingredientsAndijvie);
+
+        Set<Ingredient> ingredientsKarniyarik = new HashSet<>();
+        ingredientsKarniyarik.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(0)));
+        ingredientsKarniyarik.add(new Ingredient(null,Double.valueOf(25),productRepository.findAll().get(1)));
+        ingredientsKarniyarik.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(7)));
+        ingredientsKarniyarik.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(9)));
+        ingredientRepository.saveAll(ingredientsKarniyarik);
+
+        Set<Ingredient> ingredientsAppleJuice = new HashSet<>();
+        ingredientsAppleJuice.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(15)));
+        ingredientRepository.saveAll(ingredientsAppleJuice);
+
+        Set<Ingredient> ingredientsOrangeJuice = new HashSet<>();
+        ingredientsOrangeJuice.add(new Ingredient(null,Double.valueOf(5),productRepository.findAll().get(16)));
+        ingredientRepository.saveAll(ingredientsOrangeJuice);
+
+
+       Menu menuSalmon = new Menu(null,"Salmon", BigDecimal.valueOf(10),"Maincourse","Salmon.png",ingredientsSalmon );
+       menuRepository.save(menuSalmon);
+
+        Menu menuSalad = new Menu(null,"Salad", BigDecimal.valueOf(10),"Starter","Salad.png",ingredientSalad );
+        menuRepository.save(menuSalad);
+
+        Menu menuTomatoSoup = new Menu(null,"Tomato Soup", BigDecimal.valueOf(12),"Starter","TomatoSoup.png",ingredientTomatoSoup );
+        menuRepository.save(menuTomatoSoup);
+
+        Menu menuChickenSoup = new Menu(null,"Chicken Soup", BigDecimal.valueOf(15),"Starter","ChickenSoup.png",ingredientChickenSoup );
+        menuRepository.save(menuChickenSoup);
+
+        Menu menuIce = new Menu(null,"Ice Cream", BigDecimal.valueOf(7),"Dessert","IceCream.png",ingredientsIce );
+        menuRepository.save(menuIce);
+
+        Menu menuBaklava = new Menu(null,"Baklava", BigDecimal.valueOf(15),"Dessert","Baklava.png",ingredientsBaklava );
+        menuRepository.save(menuBaklava);
+
+        Menu menuAndijvie = new Menu(null,"Andijvie Stammpot", BigDecimal.valueOf(20),"Maincourse","AndijvieStammpot.png",ingredientsAndijvie );
+        menuRepository.save(menuAndijvie);
+
+        Menu menuKarniyarik = new Menu(null,"Karniyarik", BigDecimal.valueOf(17),"Maincourse","Karniyarik.png",ingredientsKarniyarik );
+        menuRepository.save(menuKarniyarik);
+
+        Menu menuOrangeJuice = new Menu(null,"Orange Juice", BigDecimal.valueOf(5),"Drinks","OrangeJuice.png",ingredientsOrangeJuice );
+        menuRepository.save(menuOrangeJuice);
+
+        Menu menuAppleJuice = new Menu(null,"Apple Juice", BigDecimal.valueOf(5),"Drinks","AppleJuice.png",ingredientsAppleJuice);
+        menuRepository.save(menuAppleJuice);
+
+        Personnel user = new Personnel(null, "John", "de Witt", "witt", "AAaa11..", "Admin");
+        Personnel user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "AAaa11..", "Admin");
+        user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "AAaa11..", "Admin");
+        user2 = personnelRepository.save(user);
+        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", "Admin");
+        user2 = personnelRepository.save(user);
 
         TableRestaurant tableRestaurant1 = new TableRestaurant(null, 201L, 2L);
         TableRestaurant tableRestaurant2 = new TableRestaurant(null, 202L, 2L);

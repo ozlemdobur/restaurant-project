@@ -97,17 +97,17 @@ function initProductTable() {
             "data": "minumumLimit"},
         { "title":  "Measurement Unit",
             "data": "measurementUnit"},
-        { "title": "Supplier",
-            "data": "supplier",
-                    render: function(data,type,row){
-                          var supplier = row.supplier;
-                          if(row.stockAmount<row.minumumLimit){
-                           return "<span style='color:red'>!!!     <a style='color:red' href="+supplier+" target=\"_blank\">"+supplier+"</a></span>";
-                          } else {
-                            return supplier;
-                          }
-                    }
-            },
+            { "title": "Supplier",
+                "data": "supplier",
+                        render: function(data,type,row){
+                              var supplier = row.supplier;
+                              if(row.stockAmount<row.minumumLimit){
+                               return "<span style='color:red'>!!!     <a style='color:red' href="+supplier+" target=\"_blank\">"+supplier+"</a></span>";
+                              } else {
+                                return supplier;
+                              }
+                        }
+                },
     ];
 
     // Define new table with above columns

@@ -69,13 +69,13 @@
                         <label class="btn btn-outline-primary">Dessert</label>
                     </div>
 
-<!--                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="imagePath" class="form-label">Image<span
                                 class="text-muted">(Optional)</span></label>
 
                         <input type="text" class="form-control" id="imagePath"  accept="image/*"
                                placeholder="">
-                    </div>-->
+                    </div>
                     <div class="form-group">
                         <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
                         <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
@@ -92,15 +92,14 @@
         <button type="button" id="create-menu" class="btn btn-primary" data-dismiss="modal">New Menu
         </button>
         <button class="btn btn-primary" id="edit-menu" type="submit">Edit Menu</button>
-        <!--<button class="btn btn-primary" id="upload-menu" type="submit">Upload Picture</button>-->
+        <button class="btn btn-primary" id="upload-menu" type="submit">Upload Picture</button>
         <button class="btn btn-primary" id="delete-menu" type="submit">Delete Menu</button>
     </div>
 </div>
 
-<!--
 <div id="menuUploadModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        &lt;!&ndash; Content&ndash;&gt;
+        <!-- Content-->
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Upload Menu Picture</h4>
@@ -109,7 +108,7 @@
             <div class="modal-body">
                 <img id="menuPicture" name="menuPicture" src="" width="200" height="200">
                 <input id="fileupload" type="file" name="fileupload" />
-                &lt;!&ndash;                This record will delete.Are you sure?&ndash;&gt;
+                <!--                This record will delete.Are you sure?-->
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" id="uploadMenuConfirmButton" class="btn btn-danger" data-dismiss="modal">
@@ -120,7 +119,6 @@
         </div>
     </div>
 </div>
--->
 
 
 <div id="menuDeleteModal" class="modal fade" role="dialog">
