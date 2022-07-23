@@ -32,12 +32,84 @@ function init(){
         $('#reservationModal').modal('show');
     });
 
+    $("#starterButton").click( function () {
+        getMenuList("Starter");
+    });
+
+    $("#mainCourseButton").click( function () {
+        getMenuList("Maincourse");
+    });
+
+    $("#drinksButton").click( function () {
+        getMenuList("Drinks");
+    });
+
+    $("#dessertButton").click( function () {
+        getMenuList("Dessert");
+    });
+
     $("#reservationForm").submit(function(e) {
         console.log("Inside click of reservationForm");
         e.preventDefault();
         createReservation();
         $('#reservationModal').modal('hide');
     });
+
+    initMenuListTable();
+}
+
+function getMenuList(menuType){
+
+console.log('inside getMenus' +menuType);
+
+    $.ajax({
+        url: "api/menu/menuType/" + menuType,
+        type: "get",
+        dataType: "json",
+        success: function(menus){
+            if (menus) {
+                menuListTable.clear();
+                menuListTable.rows.add(menus);
+                menuListTable.columns.adjust().draw();
+            }
+        },
+        fail: function (error) {
+            console.log('Error: ' + error);
+        }
+    });
+}
+
+function initMenuListTable() {
+    console.log('inside MenuListTable' );
+
+    columns = [
+        { "title":  "Menu Name",
+            "data": "menuName" },
+        {"title":  "Ingredients",
+                     "data": "productNames" },
+        { "title": "Menu",
+            "data": "imagePath",
+                  render: function(data,type,row){
+                  var imagePath = row.imagePath;
+                  var width="120";
+                  var height= "120";
+                  var src = "api/menu/getImage/"+imagePath;
+                         return "<img style='border-radius:50%' src="+src+" width="+width+" height="+height+" >";
+
+                  }
+        },
+    ];
+
+    menuListTable = $("#menuListTable").DataTable( {
+        "order": [[ 0, "asc" ]],
+        "columns": columns,
+        //"bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false
+    });
+
 }
 
 function createReservation(){

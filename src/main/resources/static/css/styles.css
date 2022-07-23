@@ -348,11 +348,11 @@ img{
   background-color: var(--container-color);
   border-radius: .5rem;
   box-shadow: 0 2px 4px rgba(3,74,40,.15);
-  padding: .75rem;
+  padding: 1.20rem;
 }
 
 .menu__img{
-  width: 100px;
+  width: 225px;
   align-self: center;
   margin-bottom: var(--mb-2);
 }
@@ -530,7 +530,7 @@ img{
   }
 
   .menu__container{
-    grid-template-columns: repeat(3, 210px);
+    grid-template-columns: repeat(4, 210px);
     column-gap: 4rem;
   }
   .menu__content{

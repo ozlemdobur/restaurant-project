@@ -42,16 +42,16 @@ function init(){
         }
     });
 
-/*    $("#upload-menu").click( function () {
+    $("#upload-menu").click( function () {
         if (menuTable.row($('.selected')).data() == undefined) {
             alert("You have to choose a menu!");
         }else{
             var menu = menuTable.row($('.selected')).data();
             console.log(menu.imagePath);
-            $(menuPicture).attr("src", menu.imagePath);
+            showImage(menu.imagePath);
             $('#menuUploadModal').modal('show');
         }
-    });*/
+    });
 
     $("#delete-menu").click( function () {
         if (menuTable.row($('.selected')).data() == undefined) {
@@ -67,18 +67,11 @@ function init(){
         $('#menuDeleteModal').modal('hide');
         });
 
-
-/*    $('input[type=file]').change(function (event) {
-
-         var output = document.getElementById('imagePath');
-         menuPicture.src = window.URL.createObjectURL(this.files[0]);
-         });*/
-
-/*    $("#uploadMenuConfirmButton").click( function () {
+    $("#uploadMenuConfirmButton").click( function () {
         console.log("Inside click of uploadMenuConfirmButton");
         uploadFile();
         $('#menuUploadModal').modal('hide');
-        });*/
+        });
            // Add submit event to form
     $("#modalButton").click( function() {
         createMenu();
@@ -87,9 +80,17 @@ function init(){
     getMenu();
 }
 
-/*async function uploadFile() {
+function showImage(imagePath) {
+
+    console.log('inside showImage' );
+    console.log(api+"/getImage/"+imagePath);
+    document.getElementById('menuPicture').src = api+"/getImage/"+imagePath;
+    console.log(api+"/getImage/"+imagePath);
+
+}
+
+async function uploadFile() {
     var menu = menuTable.row($('.selected')).data();
-    //$(menuPicture).attr("src", menu.imagePath);
     console.log("inside uploadfile function")    ;
     let formData = new FormData();
     formData.append("file", fileupload.files[0]);
@@ -104,7 +105,7 @@ function init(){
         alert("File successfully uploaded.");
         getMenu();
     }
-}*/
+}
 
 function clearForm(){
 
@@ -161,7 +162,6 @@ function initMenuTable() {
             $(this).removeClass('selected');
             var menu = menuTable.row($(this).parents('tr')).data();
             top.location.href="/ingredient?menuId="+menu.id;
-            alert("'menu id: " + menu.id);
         });
 
     }
@@ -214,8 +214,8 @@ function createMenu(){
         id: $("#id").val(),
         menuName: $("#menuName").val(),
         price: $("#price").val(),
-        menuType: menuType
-        //imagePath: $("#imagePath").val()
+        menuType: menuType,
+        imagePath:$("#imagePath").val()
     }
 
     var menuJson = JSON.stringify(MenuData);
