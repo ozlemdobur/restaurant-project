@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         <label for="menuName">Menu Name:</label>
-                        <input type="text" class="form-control" id="menuName">
+                        <input type="text" class="form-control" id="menuName" required>
                     </div>
 
                     <div class="form-group">
@@ -57,15 +57,15 @@
                                required>
                     </div>
 
-                    <div class="form-group" role="group" id="menuType">
+                    <div class="form-group" role="group" id="menuType" re>
                         <label for="menuType">Menu Type</label>
-                        <input type="radio" class="btn-check" id="Starter" name="mType" value="Starter" checked>
+                        <input type="radio" class="btn-check" id="Starter" name="mType" value="Starter" required>
                         <label class="btn btn-outline-primary">Starter</label>
-                        <input type="radio" class="btn-check" id="Maincourse" name="mType" value="Maincourse">
+                        <input type="radio" class="btn-check" id="Maincourse" name="mType" value="Maincourse" required>
                         <label class="btn btn-outline-primary">Maincourse</label>
-                        <input type="radio" class="btn-check" id="Drink" name="mType" value="Drink">
+                        <input type="radio" class="btn-check" id="Drink" name="mType" value="Drink" required>
                         <label class="btn btn-outline-primary">Drink</label>
-                        <input type="radio" class="btn-check" id="Dessert" name="mType" value="Dessert">
+                        <input type="radio" class="btn-check" id="Dessert" name="mType" value="Dessert" required>
                         <label class="btn btn-outline-primary">Dessert</label>
                     </div>
 
@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <!--                        <a class="btn btn-info" onclick="toastr.info('Enter strong password(1..9-a..z-A..Z-(?./)!');">Info message</a>-->
-                        <button id="modalButton" type="button" class="btn btn-primary">Submit</button>
+                        <button id="modalButton" type="submit" class="btn btn-primary">Submit</button>
                         <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close
                         </button>
                     </div>

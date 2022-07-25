@@ -1,7 +1,12 @@
 var api = "http://localhost:9090/api/product" ;
 var productTable;
 var measurementUnit;
+var productType = "";
+var user = "Chef";
+
 function init(){
+
+
 
     console.log('inside init' );
     $("#measurementUnit").click( function () {
@@ -12,6 +17,15 @@ function init(){
             }
         }
    });
+
+   $("#productType").click( function () {
+   var ele = document.getElementsByName('type');
+       for(i = 0; i < ele.length; i++) {
+           if(ele[i].checked){
+           productType = ele[i].value;
+           }
+       }
+  });
 
     $("#create-product").click( function () {
         $("#id").val('');
@@ -25,6 +39,9 @@ function init(){
         $("#piece").attr('checked',false);
         $("#gram").attr('checked',false);
         $("#litre").attr('checked',false);
+        $("#food").attr('checked',false);
+        $("#drink").attr('checked',false);
+        $("#other").attr('checked',false);
         $('#productModal').modal('show');
     });
     $("#edit-product").click( function () {
@@ -41,6 +58,17 @@ function init(){
             }else if(product.measurementUnit=="litre"){
                  $("#litre").attr('checked','checked');
                  measurementUnit="litre";
+            }
+
+            if(product.productType=="Food"){
+                $("#food").attr('checked','checked');
+                productType="food";
+            }else if(product.productType=="Drink"){
+                $("#drink").attr('checked','checked');
+                productType="Drink";
+            }else if(product.productType=="Other"){
+                 $("#other").attr('checked','checked');
+                 productType="other";
             }
 
             $("#id").val(product.id),
@@ -70,7 +98,19 @@ function init(){
         console.log("required control");
         event.preventDefault();
         console.log("required control");
-        createProduct();
+        if(user=="Chef" && productType=="Food"){
+            createProduct();
+        }else{
+            toastr.info("You can save only food products!");
+        }
+        if(user=="Headwaiter" && productType=="Drink"){
+            createProduct();
+        }else{
+            toastr.info("You can save only drink products!");
+        }
+        if(user=="Admin"){
+            createProduct();
+        }
     });
 
     initProductTable();
@@ -85,6 +125,8 @@ function initProductTable() {
             "visible": false },
         { "title":  "Product Name",
             "data": "productName" },
+        { "title":  "Product Type",
+            "data": "productType" },
         { "title":  "Brand",
             "data": "brand" },
         { "title":  "Price",
@@ -129,7 +171,23 @@ function initProductTable() {
     }
 
 function getProduct(){
-    console.log('inside getUsers' );
+    if(user != "Admin"){
+        api= api;
+    }/*else{
+    var url="http://localhost:9090/api/product/productType/"+productType;
+    }*/
+/*    console.log('inside getProduct' );
+    If(user=="Chef" && productType=="Food"){
+        url = url + "/productType/"+productType;
+    }
+    If(user=="Headwaiter" && productType=="Drink"){
+        url = url + "/productType/"+productType;
+    }else{
+        toastr.info("You can save only drink products!");
+    }
+    if(user=="Admin"){
+        createProduct();
+    }*/
 
     $.ajax({
         url: api,
@@ -178,6 +236,7 @@ function createProduct(){
         price: $("#price").val(),
         unitPrice: $("#unitPrice").val(),
         measurementUnit: measurementUnit,
+        productType: productType,
         supplier: $("#supplier").val()
     }
     console.log("ajavtan once");

@@ -17,14 +17,28 @@ public class Product {
     private String brand;
     private Double price;
     private Double unitPrice;
+    private String productType;
 
-    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier) {
+/*    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier) {
         this.id = id;
         this.productName = productName;
         this.measurementUnit = measurementUnit;
         this.stockAmount = stockAmount;
         this.minumumLimit = minumumLimit;
         this.supplier = supplier;
+    }*/
+
+    public Product(Long id, String productName, String measurementUnit, Double stockAmount, Double minumumLimit, String supplier, String brand, Double price, Double unitPrice, String productType) {
+        this.id = id;
+        this.productName = productName;
+        this.measurementUnit = measurementUnit;
+        this.stockAmount = stockAmount;
+        this.minumumLimit = minumumLimit;
+        this.supplier = supplier;
+        this.brand = brand;
+        this.price = price;
+        this.unitPrice = unitPrice;
+        this.productType = productType;
     }
 
     public Product() {
@@ -112,5 +126,13 @@ public class Product {
 
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 }

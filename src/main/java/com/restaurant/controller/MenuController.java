@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import com.restaurant.exceptions.NotAcceptableValue;
 import com.restaurant.model.Menu;
 import com.restaurant.output.MenuOutput;
 import com.restaurant.service.MenuService;
@@ -66,9 +67,14 @@ public class MenuController {
 
     @PostMapping(value = "/menu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createMenu(@RequestBody Menu menu) {
+
         Menu menuCreated = menuService.createMenu(menu);
         System.out.println(menu.toString());
-        return ResponseEntity.ok(menuCreated);
+            if(menuCreated!=null) {
+                return ResponseEntity.ok(menuCreated);
+            }else{
+                throw new NotAcceptableValue("This menu name exist.Please change the menu name!");
+            }
 
     }
 
