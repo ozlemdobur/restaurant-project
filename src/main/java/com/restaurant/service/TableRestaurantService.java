@@ -11,6 +11,7 @@ public interface TableRestaurantService {
     //public List <TableRestaurant> findByEmptyTables();
     //public Optional<TableRestaurant> makeControlFreeTable(Long howManyPeople, LocalDate date, LocalTime time);
     public void deleteById(Long id);
+    public TableRestaurant findByTableNumber(Long tableNumber);
     //Optional<Reservation> getFreeTable(Long howManyPeople, String date, String time);
     //public void saveWithOptional(Optional<TableRestaurant> tableRestaurant);
 }

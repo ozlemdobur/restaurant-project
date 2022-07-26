@@ -12,4 +12,5 @@ public interface ProductService {
     Product createProduct(Product product);
     void deleteProduct(Long id);
     Optional<Product> findByProduct(Long id);
+    List<Product> findByProductTypeLike(String productType);
 }

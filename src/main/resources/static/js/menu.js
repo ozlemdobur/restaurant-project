@@ -18,8 +18,8 @@ function init(){
 
         variableMenuType = "";
         console.log("create menu inside mtype"+variableMenuType );
-        $('#menuModal').modal('show');
         clearForm();
+        $('#menuModal').modal('show');
 
     });
 
@@ -73,9 +73,17 @@ function init(){
         $('#menuUploadModal').modal('hide');
         });
            // Add submit event to form
-    $("#modalButton").click( function() {
+
+    $("#menuForm").submit( function(event) {
+        console.log("required control");
+        event.preventDefault();
+        console.log("required control");
         createMenu();
     });
+/*    $("#modalButton").click( function() {
+        event.preventDefault();
+        createMenu();
+    });*/
     initMenuTable();
     getMenu();
 }
@@ -109,9 +117,13 @@ async function uploadFile() {
 
 function clearForm(){
 
-  $('#frm input[type="text"]').each(function(){
+    $('#menuForm input[type="text"]').each(function(){
       $(this).val("");
-  });
+    });
+
+    $('#menuForm input[type="number"]').each(function(){
+        $(this).val("");
+    });
 
    var ele = document.getElementsByName("mType");
    for(var i=0;i<ele.length;i++)
@@ -234,8 +246,12 @@ function createMenu(){
                 console.log('Text Status:' + status);
             },
             error: function(xhr,status,error){
+                responseText = jQuery.parseJSON(xhr.responseText);
                 console.log('Text Status:' + status);
-                console.log("error "+xhr.error);
+                console.log(' - message: ' + responseText.message);
+                //console.log("error "+xhr.);
+                toastr.info(responseText.message);
+                //alert(xhr.responseText);//"This menu name exist.Please change the menu name!"
             },
             fail: function (error) {
                 console.log('Text Status:' + status);

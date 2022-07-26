@@ -42,8 +42,13 @@ public class MenuServiceImpl implements MenuService {
                 ingredientRepository.saveMenuIdIntoIngredient(menu.getId(), ingList.getId());
             }
         } else {
-
-            menuCreated = menuRepository.save(menu);
+           if(findByMenuName(menu.getMenuName()).isEmpty()) {
+               System.out.println("");
+               menuCreated = menuRepository.save(menu);
+            }else{
+               menuCreated=null;
+               System.out.println("Same Menuname");
+           }
         }
         return menuCreated;
     }
@@ -99,6 +104,12 @@ public class MenuServiceImpl implements MenuService {
         //productList = String.join(",", menuOutput.toString());
         System.out.println(menuOutput.toString());*/
         return menuOutput;
+    }
+
+    @Override
+    public Optional<Menu> findByMenuName(String menuName) {
+        Optional<Menu> menu = menuRepository.findByMenuName(menuName);
+        return menu;
     }
 
 

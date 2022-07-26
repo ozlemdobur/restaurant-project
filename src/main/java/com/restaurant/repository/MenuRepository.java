@@ -21,4 +21,6 @@ public interface MenuRepository extends CrudRepository<Menu, Long> {
 
     List<Menu> findByMenuTypeLike(String menuType);
 
+    Optional<Menu> findByMenuName(String menuName);
+
 }

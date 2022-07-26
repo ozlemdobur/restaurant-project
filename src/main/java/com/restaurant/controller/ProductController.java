@@ -1,12 +1,14 @@
 package com.restaurant.controller;
 
 import com.restaurant.model.Product;
+import com.restaurant.output.MenuOutput;
 import com.restaurant.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,6 +25,13 @@ public class ProductController {
     @GetMapping(value = "/product", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Iterable<Product>> getAllProducts() {
         Iterable<Product> products = productService.findAll();
+        System.out.println(products.toString());
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping(value = "/product/productType/{productType}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Product>> getAllByProductType(@PathVariable String productType) {
+        List<Product> products = productService.findByProductTypeLike(productType);
         System.out.println(products.toString());
         return ResponseEntity.ok(products);
     }

@@ -13,4 +13,5 @@ public interface MenuService {
     void uploadPictureToMenu(String imagePath, Long id);
     Optional<Menu> findById(Long id);
     List<MenuOutput> findByMenuTypeLike(String menuType);
+    Optional<Menu> findByMenuName(String menuName);
 }

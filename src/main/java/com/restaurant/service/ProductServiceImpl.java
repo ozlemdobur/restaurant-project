@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
         Comparator<Product> sorted = Comparator.comparingDouble(c -> c.getStockAmount() - c.getMinumumLimit());
         //(c1, c2)-> Double.compare(c1.getStockAmount()-c1.getMinumumLimit(),c2.getStockAmount()-c2.getMinumumLimit());
         return productRepository.findAll().stream().sorted(sorted).toList();
+        //return  null;
     }
 
     @Override
@@ -41,10 +42,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getBiggerAmount(Long stockAmount) {
-        return productRepository.findByStockAmountGreaterThan(stockAmount);
+    public List<Product> findByProductTypeLike(String productType) {
+
+        return productRepository.findByProductTypeLike(productType);
+
     }
 
+    @Override
+    public List<Product> getBiggerAmount(Long stockAmount) {
+
+        return productRepository.findByStockAmountGreaterThan(stockAmount);
+
+    }
 
 
 }
