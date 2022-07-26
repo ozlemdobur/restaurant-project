@@ -1,18 +1,14 @@
 package com.restaurant.controller;
 
+import com.restaurant.exceptions.NotAcceptableValueException;
 import com.restaurant.model.TableRestaurant;
 import com.restaurant.service.TableRestaurantService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Optional;
 
 
 @RestController
@@ -46,8 +42,14 @@ public class TableRestaurantController {
     @PostMapping(value = "/tableRestaurant", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TableRestaurant> saveRestaurantTable(@RequestBody TableRestaurant tableRestaurant) {
         logger.info("Inside 'saveRestaurantTable'");
-        tableRestaurantService.save(tableRestaurant);
-        return ResponseEntity.ok(tableRestaurant);
+        TableRestaurant isExist = tableRestaurantService.findByTableNumber(tableRestaurant.getTableNumber());
+        if(isExist==null) {
+            tableRestaurantService.save(tableRestaurant);
+            return ResponseEntity.ok(tableRestaurant);
+        }else{
+            throw new NotAcceptableValueException("This table number exist.Please change the table number!");
+        }
+
     }
 
     @DeleteMapping(value = "/tableRestaurant/{id}", produces= MediaType.TEXT_PLAIN_VALUE)
@@ -57,14 +59,13 @@ public class TableRestaurantController {
         return ResponseEntity.ok( "Table with id: " + id + " is deleted");
     }
 
-    // http://localhost:9090/api/reservation
-/*    @GetMapping(value = "/tableRestaurant/{howManyPeople}/{date}/{time}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Optional<TableRestaurant>> makeControlFreeTable(@PathVariable Long howManyPeople, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") LocalDate date, @PathVariable @DateTimeFormat(pattern = "HH:mm") LocalTime time){
-        System.out.println("Inside getAllReservations");
-        System.out.println("date" + date.toString());
-        System.out.println("time" + time.toString());
-        Optional<TableRestaurant> tableRestaurant = tableRestaurantService.makeControlFreeTable(howManyPeople, date, time);
-
+/*    // http://localhost:9090/api/reservation
+    @GetMapping(value = "/tableRestaurant/tableControl/{tableNumber}", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Optional<TableRestaurant>> isTableNumberExist(@PathVariable Long tableNumber){
+        Optional<TableRestaurant> tableRestaurant = tableRestaurantService.findByTableNumber(tableNumber);
+        if(tableRestaurant.isEmpty()){
+            throw new NotAcceptableValueException("This menu name exist.Please change the menu name!");
+        }
         return ResponseEntity.ok(tableRestaurant);
     }*/
 

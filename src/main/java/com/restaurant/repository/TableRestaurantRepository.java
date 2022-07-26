@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.Optional;
 
 @Repository
 public interface TableRestaurantRepository extends CrudRepository<TableRestaurant, Long> {
+
+ public TableRestaurant findByTableNumber(Long tableNumber);
 
 
     /*    select id from Table_Restaurant where table_size>= 2 and TABLE_RESERVE_START_DATE = '2022-07-11'

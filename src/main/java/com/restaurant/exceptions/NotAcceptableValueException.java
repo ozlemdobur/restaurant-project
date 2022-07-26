@@ -4,16 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value= HttpStatus.NOT_ACCEPTABLE)
-public class NotAcceptableValue extends RuntimeException{
+public class NotAcceptableValueException extends RuntimeException{
 
-    public NotAcceptableValue() {
+    public NotAcceptableValueException() {
     }
 
-    public NotAcceptableValue(String message) {
+    public NotAcceptableValueException(String message) {
         super(message);
     }
 
-    public NotAcceptableValue(Throwable cause) {
+    public NotAcceptableValueException(Throwable cause) {
         super(cause);
     }
 }
