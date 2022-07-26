@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>Admin Menu</title>
+    <script type="text/javascript" src="/js/session.js"></script>
+    <script>
+        $( document ).ready(function() {
+            console.log( "initializing" );
+            init();
+            initMenu();
+        });
+    </script>
+
 </head>
 <body>
 
@@ -13,26 +22,26 @@
         <table style="width: 100%; top:15px;">
             <tr>
                 <td style="width:300px;">
-                    <a href="#home"><img height="50" src="/img/logo_with_name.png" width="300">
+                    <a id="menuHome" href="#home"><img height="50" src="/img/logo_with_name.png" width="300">
                     </a>
                 </td>
                 <td>
-                    <a href="/reservationAdministration" style="text-align:center;color: #141459;"><h4><b>Reservation</b></h4></a>
+                    <a id="menuReservation" href="/reservationAdministration" style="text-align:center;color: #141459;"><h4><b>Reservation</b></h4></a>
                 </td>
                 <td>
-                    <a href="/tables" style="text-align:center;color: #141459;"><h4><b>Table</b></h4></a>
+                    <a id="menuTableRestaurant" href="/tables" style="text-align:center;color: #141459;"><h4><b>Table</b></h4></a>
                 </td>
                 <td>
-                    <a href="/menu" style="text-align:center;color: #141459;"><h4><b>Menu</b></h4></a>
+                    <a id="menuMenu" href="/menu" style="text-align:center;color: #141459;"><h4><b>Menu</b></h4></a>
                 </td>
                 <td>
-                    <a href="/product" style="text-align:center;color: #141459;"><h4><b>Product</b></h4></a>
+                    <a id="menuProduct" href="/product" style="text-align:center;color: #141459;"><h4><b>Product</b></h4></a>
                 </td>
                 <td>
-                    <a href="/personnel" style="text-align:center;color: #141459;"><h4><b>Personnel</b></h4></a>
+                    <a id="menuPersonnel" href="/personnel" style="text-align:center;color: #141459;"><h4><b>Personnel</b></h4></a>
                 </td>
                 <td style="align =right;right:0px;">
-                    <p></p><button class="btn btn-primary" type="button" href="/index"
+                    <p></p><button id="menuLogout" class="btn btn-primary" type="button" href="/index"
                                    onclick=";window.location.href=this.getAttribute('href');return false;">Logout</button>
                 </td>
             </tr>
