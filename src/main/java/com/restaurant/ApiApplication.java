@@ -1,5 +1,6 @@
 package com.restaurant;
 
+import com.restaurant.authorization.Session;
 import com.restaurant.model.*;
 import com.restaurant.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,13 +171,13 @@ public class ApiApplication implements CommandLineRunner {
         Menu menuAppleJuice = new Menu(null,"Apple Juice", BigDecimal.valueOf(5),"Drinks","AppleJuice.png",ingredientsAppleJuice);
         menuRepository.save(menuAppleJuice);
 
-        Personnel user = new Personnel(null, "John", "de Witt", "witt", "AAaa11..", "Admin");
+        Personnel user = new Personnel(null, "John", "de Witt", "witt", "AAaa11..", Session.getPersonnelRole("witt"));
         Personnel user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "AAaa11..", "Admin");
+        user = new Personnel(null, "Ozlem", "Dobur", "odobur", "AAaa11..", Session.getPersonnelRole("odobur"));
         user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "AAaa11..", "Admin");
+        user = new Personnel(null, "Ahmet", "Karabas", "akarabas", "AAaa11..", Session.getPersonnelRole("akarabas"));
         user2 = personnelRepository.save(user);
-        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", "Admin");
+        user = new Personnel(null, "Nurullah", "Bayram", "nbayram", "AAaa11..", Session.getPersonnelRole("nbayram"));
         user2 = personnelRepository.save(user);
 
         TableRestaurant tableRestaurant1 = new TableRestaurant(null, 201L, 2L);

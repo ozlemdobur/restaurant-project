@@ -1,5 +1,6 @@
 package com.restaurant.mvc;
 
+import com.restaurant.authorization.ViewResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,7 +10,7 @@ public class PersonnelMvcController {
     @GetMapping("/personnel")
     public String userPage(){
 
-        return "personnel";
+        return ViewResolver.getRequestedView("personnel");
 
     }
 }

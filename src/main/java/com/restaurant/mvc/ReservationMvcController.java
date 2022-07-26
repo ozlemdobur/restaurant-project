@@ -1,5 +1,6 @@
 package com.restaurant.mvc;
 
+import com.restaurant.authorization.ViewResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,7 +10,7 @@ public class ReservationMvcController {
     @GetMapping("/reservationAdministration")
     public String reservationAdmin() {
         System.out.println("Here is inside reservation admin!");
-        return "reservationAdministration";
+        return ViewResolver.getRequestedView("reservationAdministration");
     }
 
     @GetMapping("/reservation")
