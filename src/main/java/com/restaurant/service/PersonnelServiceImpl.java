@@ -1,5 +1,6 @@
 package com.restaurant.service;
 
+import com.restaurant.authorization.Session;
 import com.restaurant.model.Personnel;
 import com.restaurant.repository.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class PersonnelServiceImpl implements PersonnelService {
     public Personnel createPersonnel(Personnel personnel) throws Exception{
         if(isPasswordStrong(personnel)){
             Personnel personnelCreated = personnelRepository.save(personnel);
+            Session.addUser(personnel.getUsername(), personnel.getRole());
             return personnelCreated;
         }
         throw new Exception("Password is weak!");
