@@ -35,6 +35,11 @@ public class TableRestaurantServiceImpl implements TableRestaurantService {
     }
 
     @Override
+    public TableRestaurant findByTableNumber(Long tableNumber) {
+        return tableRestaurantRepository.findByTableNumber(tableNumber);
+    }
+
+    @Override
     public void save(TableRestaurant tableRestaurant) {
          tableRestaurantRepository.save(tableRestaurant);
     }

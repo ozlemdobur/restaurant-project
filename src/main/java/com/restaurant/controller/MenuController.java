@@ -1,6 +1,6 @@
 package com.restaurant.controller;
 
-import com.restaurant.exceptions.NotAcceptableValue;
+import com.restaurant.exceptions.NotAcceptableValueException;
 import com.restaurant.model.Menu;
 import com.restaurant.output.MenuOutput;
 import com.restaurant.service.MenuService;
@@ -8,20 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -73,7 +68,7 @@ public class MenuController {
             if(menuCreated!=null) {
                 return ResponseEntity.ok(menuCreated);
             }else{
-                throw new NotAcceptableValue("This menu name exist.Please change the menu name!");
+                throw new NotAcceptableValueException("This menu name exist.Please change the menu name!");
             }
 
     }

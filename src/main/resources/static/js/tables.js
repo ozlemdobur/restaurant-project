@@ -69,7 +69,7 @@ function init(){
     $("#tableForm").on('submit', function() {
         console.log("Submitting");
         createTable();
-        $('#tableModal').modal('hide');
+
     });
 
     initTableTables();
@@ -146,6 +146,7 @@ function getTablesData(){
 
 function createTable(){
     console.log('inside createTable' );
+    alert("inside");
     var tableData = {
         id: $("#id").val(),
         tableNumber: $("#tableNumber").val(),
@@ -163,8 +164,9 @@ function createTable(){
         data: tableJson,
         contentType:"application/json; charset=utf-8",
         dataType: "json",
-        success: function(table) {
+        success: function(table, textStatus, jqXHR) {
             console.log(table);
+            alert("inside succes");
             // Clear fields in page
             $("#id").val('');
             $("#tableNumber").val('');
@@ -173,10 +175,20 @@ function createTable(){
 /*            $("#tableReserveStartDate").val(),
             $("#tableReserveStartTime").val('');
             $("#tableReserveEndTime").val('');*/
+            $('#tableModal').modal('hide');
             getTablesData();
         },
+        error: function(xhr,status,error){
+            responseText = jQuery.parseJSON(xhr.responseText);
+            alert(responseText.message);
+            console.log('Text Status:' + status);
+            console.log(' - message: ' + responseText.message);
+
+            toastr.info(responseText.message);
+        },
         fail: function (error) {
-          console.log('Error: ' + error);
+            alert("inside fail");
+            console.log('Error: ' + error);
         }
     });
 }
