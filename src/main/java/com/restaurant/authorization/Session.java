@@ -15,16 +15,19 @@ public class Session {
     public static final String ADMIN = "Admin";
     public static final String CHEF = "Chef";
     public static final String HEADWAITER = "Headwaiter";
+    public static final String WAITER = "Waiter";
+
 
     private static Map<String, String> roles = new HashMap<>();
 
     // connect personnel to role
     // Role VISITOR is used when not logged in
     static {
-        roles.put("nbayram", ADMIN);
+        roles.put("akarabas", WAITER);
         roles.put("odobur", CHEF);
-        roles.put("akarabas", HEADWAITER);
+        roles.put("nbayram", HEADWAITER);
         roles.put("witt", ADMIN);
+
     }
 
     public static void addUser(String username, String role) { roles.put(username, role); }

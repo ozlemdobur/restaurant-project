@@ -55,4 +55,12 @@ function showMenu(role){
         $("#menuLogout").show();
         return;
     }
+
+    if(role === 'Waiter'){
+        $("#menuTable").show();
+        $("#menuLogout").show();
+        $("#newTableButton").hide();
+        $("#editTableButton").hide();
+        $("#deleteTableButton").hide();
+    }
 }

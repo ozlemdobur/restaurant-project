@@ -12,6 +12,7 @@ public class ViewResolver {
         roleViews.put(Session.ADMIN, "personnel;product;menu;reservationAdministration;tables");
         roleViews.put(Session.CHEF, "menu");
         roleViews.put(Session.HEADWAITER, "product");
+        roleViews.put(Session.WAITER, "tables");
     }
 
     public static String getRequestedView(String view) {
