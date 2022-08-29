@@ -6,7 +6,7 @@ pipeline {
   }
   tools {
       maven 'Maven_3.8.6'
-      jdk 'Jdk_11'
+      jdk 'openjdk-17.0.2'
   }
   stages {
     stage ('Initialize') {
