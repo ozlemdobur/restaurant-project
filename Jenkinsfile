@@ -21,8 +21,6 @@ pipeline {
             bat 'docker compose down'
         }
     }
-
-
     stage ('Test') {
           steps {
               bat 'mvn -Dmaven.test.failure.ignore=true test'
