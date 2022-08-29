@@ -8,7 +8,7 @@ services:
     ports:
       - "8081:9991"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/mydb
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/testdb
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: sa
     depends_on:
@@ -25,6 +25,6 @@ services:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_USER: sa
       MYSQL_PASSWORD: sa
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: testdb
     networks:
       - appnet
