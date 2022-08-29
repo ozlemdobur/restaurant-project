@@ -15,6 +15,14 @@ pipeline {
             echo "${env.GIT_BRANCH}"
         }
     }
+
+    stage ('Stop Containers') {
+        steps {
+            bat 'docker compose down'
+        }
+    }
+
+
     stage ('Test') {
           steps {
               bat 'mvn -Dmaven.test.failure.ignore=true test'
@@ -29,7 +37,12 @@ pipeline {
           steps {
               bat 'mvn -Dskip.tests=true package'
           }
-      }
+    }
+    stage ('Start Containers') {
+            steps {
+                bat 'docker compose up -d --build'
+            }
+        }
     stage('Finalize') {
     steps {
       bat 'echo "Finalizing"'
