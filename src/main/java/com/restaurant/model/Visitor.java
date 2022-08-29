@@ -7,26 +7,39 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Personnel {
+public class Visitor {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String role;
 
-    public Personnel() {
+    private String firstName;
+
+    private String lastName;
+
+    private String age;
+
+    private String city;
+
+    private String status;
+
+    public Visitor() {
     }
 
-    public Personnel(Long id, String firstName, String lastName, String username, String password, String role) {
+    public Visitor(Long id, String firstName, String lastName, String age, String city, String status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.role = role;
+        this.age = age;
+        this.city = city;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getId() {
@@ -53,27 +66,19 @@ public class Personnel {
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAge() {
+        return age;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCity() {
+        return city;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setCity(String city) {
+        this.city = city;
     }
 }
