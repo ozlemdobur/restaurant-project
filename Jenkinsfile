@@ -6,7 +6,7 @@ pipeline {
   }
   tools {
       maven 'Maven_3.8.6'
-      jdk 'openjdk-17.0.2'
+      jdk 'Jdk_11'
   }
   stages {
     stage ('Initialize') {
@@ -15,5 +15,15 @@ pipeline {
             echo "${env.GIT_BRANCH}"
         }
     }
+  }
+  stage ('Test') {
+      steps {
+          bat 'mvn -Dmaven.test.failure.ignore=true test'
+      }
+      post {
+          success {
+              junit 'target/surefire-reports/**/*.xml'
+          }
+      }
   }
 }
