@@ -9,6 +9,7 @@ pipeline {
       jdk 'Jdk_11'
   }
   stages {
+
     stage ('Initialize') {
         steps {
             //echo "${GIT_BRANCH}"
@@ -21,36 +22,39 @@ pipeline {
             bat 'docker compose down'
         }
     }
+
     stage ('Test') {
-          steps {
-              bat 'mvn -Dmaven.test.failure.ignore=true test'
-          }
-          post {
-              success {
-                  junit 'target/surefire-reports/**/*.xml'
-              }
-          }
-      }
-    stage ('Build') {
-          steps {
-              bat 'mvn -Dskip.tests=true package'
-          }
-    }
-    stage ('Start Containers') {
-            steps {
-                bat 'docker compose up -d --build'
+        steps {
+            bat 'mvn -Dmaven.test.failure.ignore=true test'
+        }
+        post {
+            success {
+                junit 'target/surefire-reports/**/*.xml'
             }
         }
-    stage('Finalize') {
-    steps {
-      bat 'echo "Finalizing"'
-    }
-    post{
-      always {
-       mail bcc: '', body: 'Pipeline has been succesfully executed ', cc: '', from: 'ozlem.dobur@capgemini.com', replyTo: 'ozlem.dobur@capgemini.com', subject: 'Pipeline has been succesfully executed ', to: 'ozlem.dobur@capgemini.com'
-      }
-    }
     }
 
+    stage ('Build') {
+        steps {
+            bat 'mvn -Dskip.tests=true package'
+        }
+    }
+
+    stage ('Start Containers') {
+        steps {
+            bat 'docker compose up -d --build'
+        }
+    }
+
+    stage('Finalize') {
+            steps {
+              bat 'echo "Finalizing"'
+            }
+            post{
+              always {
+               mail bcc: '', body: 'Pipeline has been succesfully executed ', cc: '', from: 'muslum.ercan@capgemini.com', replyTo: 'muslum.ercan@capgemini.com', subject: 'Pipeline has been succesfully executed ', to: 'muslum.ercan@capgemini.com'
+              }
+            }
+          }
   }
 }
