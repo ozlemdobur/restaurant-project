@@ -16,4 +16,14 @@ pipeline {
         }
     }
   }
+  stage ('Test') {
+      steps {
+          bat 'mvn -Dmaven.test.failure.ignore=true test'
+      }
+      post {
+          success {
+              junit 'target/surefire-reports/**/*.xml'
+          }
+      }
+  }
 }
